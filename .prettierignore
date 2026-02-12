@@ -1,0 +1,12 @@
+node_modules
+dist
+.cache
+*.log
+coverage
+.next
+.nuxt
+.vscode
+.idea
+*.min.js
+*.min.css
+public

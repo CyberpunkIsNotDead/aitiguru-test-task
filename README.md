@@ -9,22 +9,26 @@ This template provides a minimal setup to get React working in Vite with HMR, ES
 The React Compiler is automatically optimizing your components. It uses compilation mode "annotations" which means it will optimize components that are marked with the "use client" directive or have explicit optimization hints.
 
 ### Configuration
+
 - **Babel Plugin**: `babel-plugin-react-compiler` is configured in `vite.config.ts`
 - **Config File**: `react-compiler.config.json` with compilation mode set to "annotations"
 - **Automatic Optimization**: Components are automatically optimized without manual memoization
 
 ### Usage
+
 Simply write your React components as usual - the compiler will handle optimizations automatically:
 
 ```tsx
 function MyComponent({ data, onUpdate }) {
   // No need for useMemo, useCallback, or React.memo
   // The compiler handles this automatically!
-  const processed = data.map(item => item.value * 2);
-  
+  const processed = data.map((item) => item.value * 2);
+
   return (
     <div>
-      {processed.map(item => <div key={item}>{item}</div>)}
+      {processed.map((item) => (
+        <div key={item}>{item}</div>
+      ))}
     </div>
   );
 }
@@ -64,15 +68,15 @@ export default defineConfig([
       // other options...
     },
   },
-])
+]);
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from 'eslint-plugin-react-x';
+import reactDom from 'eslint-plugin-react-dom';
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -93,5 +97,5 @@ export default defineConfig([
       // other options...
     },
   },
-])
+]);
 ```

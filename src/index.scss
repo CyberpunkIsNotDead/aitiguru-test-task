@@ -1,12 +1,12 @@
 // SCSS Variables for global styles
-$font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+$font-family: system-ui, avenir, helvetica, arial, sans-serif;
 $primary-color: #646cff;
 $primary-hover: #535bf2;
 $primary-light: #747bff;
-$text-color-dark: rgba(255, 255, 255, 0.87);
+$text-color-dark: rgb(255 255 255 / 87%);
 $text-color-light: #213547;
 $bg-dark: #242424;
-$bg-light: #ffffff;
+$bg-light: #fff;
 $button-bg-dark: #1a1a1a;
 $button-bg-light: #f9f9f9;
 
@@ -14,13 +14,11 @@ $button-bg-light: #f9f9f9;
   font-family: $font-family;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: $text-color-dark;
   background-color: $bg-dark;
-
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -29,7 +27,7 @@ a {
   font-weight: 500;
   color: $primary-color;
   text-decoration: inherit;
-  
+
   &:hover {
     color: $primary-hover;
   }
@@ -58,11 +56,11 @@ button {
   background-color: $button-bg-dark;
   cursor: pointer;
   transition: border-color 0.25s;
-  
+
   &:hover {
     border-color: $primary-color;
   }
-  
+
   &:focus,
   &:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
@@ -74,11 +72,11 @@ button {
     color: $text-color-light;
     background-color: $bg-light;
   }
-  
+
   a:hover {
     color: $primary-light;
   }
-  
+
   button {
     background-color: $button-bg-light;
   }
