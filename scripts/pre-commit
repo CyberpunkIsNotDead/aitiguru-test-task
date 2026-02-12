@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Pre-commit hook that runs linting
+# Exit on any error
+set -e
+
+echo "🔍 Running pre-commit linting..."
+
+# Get staged files
+STAGED_JS_TS=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|jsx|ts|tsx)$')
+STAGED_SCSS=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(css|scss)$')
+
+# Run ESLint only on JS/TS files
+if [ -n "$STAGED_JS_TS" ]; then
+    echo "Running ESLint on staged JS/TS files..."
+    npx eslint $STAGED_JS_TS
+    if [ $? -ne 0 ]; then
+        echo "❌ ESLint failed. Fix issues before committing."
+        exit 1
+    fi
+fi
+
+# Run Stylelint only on CSS/SCSS files
+if [ -n "$STAGED_SCSS" ]; then
+    echo "Running Stylelint on staged CSS/SCSS files..."
+    npx stylelint $STAGED_SCSS
+    if [ $? -ne 0 ]; then
+        echo "❌ Stylelint failed. Fix issues before committing."
+        exit 1
+    fi
+fi
+
+echo "✅ All linting checks passed!"
+exit 0
