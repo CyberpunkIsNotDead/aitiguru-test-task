@@ -1,5 +1,38 @@
-// Import Inter font with optimized subsets for Russian and English
-@import 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&subset=cyrillic,cyrillic-ext,latin&display=swap';
+// Define local font faces for Inter
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/inter-cyrillic-400-normal.woff2') format('woff2'),
+       url('/fonts/inter-cyrillic-ext-400-normal.woff2') format('woff2'),
+       url('/fonts/inter-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/inter-cyrillic-500-normal.woff2') format('woff2'),
+       url('/fonts/inter-cyrillic-ext-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/inter-cyrillic-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/inter-cyrillic-700-normal.woff2') format('woff2');
+}
 
 // SCSS Variables for global styles
 $font-family: 'Inter', system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, sans-serif;
