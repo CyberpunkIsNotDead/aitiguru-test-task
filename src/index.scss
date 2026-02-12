@@ -1,8 +1,8 @@
-// Import Inter font
-@import '@fontsource/inter/index.css';
+// Import Inter font with optimized subsets for Russian and English
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&subset=cyrillic,cyrillic-ext,latin&display=swap';
 
 // SCSS Variables for global styles
-$font-family: 'Inter', system-ui, avenir, helvetica, arial, sans-serif;
+$font-family: 'Inter', system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, sans-serif;
 $primary-color: #646cff;
 $primary-hover: #535bf2;
 $primary-light: #747bff;
