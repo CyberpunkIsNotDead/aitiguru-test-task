@@ -1,0 +1,103 @@
+// SCSS Variables
+$primary-color: #646cff;
+$react-color: #61dafb;
+$text-color: #333;
+$light-text: #888;
+$border-radius: 8px;
+$transition-speed: 300ms;
+
+// Mixin for button styles
+@mixin button-style($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  padding: 0.75em 1.5em;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: all $transition-speed ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter $transition-speed;
+  
+  &:hover {
+    filter: drop-shadow(0 0 2em #{$primary-color}aa);
+  }
+  
+  &.react:hover {
+    filter: drop-shadow(0 0 2em #{$react-color}aa);
+  }
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+h1 {
+  color: $text-color;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, $primary-color, $react-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card {
+  padding: 2em;
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+  
+  button {
+    @include button-style($primary-color, white);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: $text-color;
+    line-height: 1.6;
+    margin: 0.5rem 0;
+    
+    code {
+      background-color: #f5f5f5;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+    }
+  }
+}
+
+.read-the-docs {
+  color: $light-text;
+  font-style: italic;
+}
