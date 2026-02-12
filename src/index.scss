@@ -1,5 +1,8 @@
+// Import Inter font
+@import '@fontsource/inter/index.css';
+
 // SCSS Variables for global styles
-$font-family: system-ui, avenir, helvetica, arial, sans-serif;
+$font-family: 'Inter', system-ui, avenir, helvetica, arial, sans-serif;
 $primary-color: #646cff;
 $primary-hover: #535bf2;
 $primary-light: #747bff;
