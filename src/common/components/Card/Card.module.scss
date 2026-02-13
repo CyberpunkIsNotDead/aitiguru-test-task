@@ -1,0 +1,10 @@
+@use '@/common/css/colors' as *;
+
+.card {
+  background: $white;
+  padding: 26px 30px;
+}
+
+.card-fill {
+  flex: 1;
+}

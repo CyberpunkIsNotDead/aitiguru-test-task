@@ -1,12 +1,17 @@
 @use '@/common/css/colors' as *;
 
-.auth {
+.auth-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
   gap: 1.5rem;
+}
+
+.header-text {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 45px;
+  color: $text-darker;
 }
 
 .checkboxes {
