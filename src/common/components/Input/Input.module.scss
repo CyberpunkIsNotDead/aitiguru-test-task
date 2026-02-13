@@ -1,0 +1,56 @@
+@use '@/common/css/colors' as *;
+
+.input-wrapper {
+  /* input */
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 16px;
+  gap: 14px;
+
+  min-height: 55px;
+
+  background: $white;
+  border: 1.5px solid $border-grey;
+  border-radius: 12px;
+
+  width: 100%;
+
+  &:focus-within {
+    outline: none;
+    border-color: $element-blue;
+  }
+
+  .input-element::placeholder {
+    color: $text-grey;
+  }
+}
+
+.input-wrapper--grey {
+  background: $element-light-grey;
+}
+
+.input-element {
+  background: transparent;
+  border: none;
+  outline: none;
+  flex: 1;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.prepend,
+.append {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

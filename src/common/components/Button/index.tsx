@@ -5,14 +5,28 @@ import styles from './Button.module.scss';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
   children: React.ReactNode;
+  variant?: 'default' | 'opaque';
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ asChild = false, children, className = '', ...props }, ref) => {
+  (
+    {
+      asChild = false,
+      children,
+      variant = 'default',
+      className = '',
+      ...props
+    },
+    ref
+  ) => {
     const Comp = asChild ? Slot : 'button';
 
     return (
-      <Comp className={`${styles.button} ${className}`} ref={ref} {...props}>
+      <Comp
+        className={`${styles.button} ${styles[`button--${variant}`]} ${className}`}
+        ref={ref}
+        {...props}
+      >
         {children}
       </Comp>
     );

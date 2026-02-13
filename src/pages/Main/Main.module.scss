@@ -70,4 +70,16 @@
       line-height: 1.4;
     }
   }
+
+  .navigation {
+    margin-top: 1rem;
+    
+    a {
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@/common/components/Button';
 import styles from './Main.module.scss';
 
@@ -37,6 +38,12 @@ const Main = () => {
   return message;
 }`}
         </code>
+      </div>
+
+      <div className={styles.navigation}>
+        <Link to='/auth'>
+          <Button>Go to Auth Page</Button>
+        </Link>
       </div>
     </div>
   );

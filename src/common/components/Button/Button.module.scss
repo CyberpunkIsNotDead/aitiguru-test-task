@@ -56,3 +56,34 @@
     }
   }
 }
+
+.button--opaque {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  height: auto;
+  min-height: auto;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  transition: none;
+
+  &:hover {
+    background: transparent;
+    transform: none;
+  }
+
+  &:active {
+    transform: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
