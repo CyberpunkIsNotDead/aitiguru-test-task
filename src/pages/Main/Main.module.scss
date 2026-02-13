@@ -32,4 +32,42 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .mono-example {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 2rem;
+    background: $element-light-grey;
+    border-radius: 8px;
+    max-width: 600px;
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $text-dark;
+      margin-bottom: 1rem;
+    }
+
+    .mono-text {
+      font-family: $font-family-mono;
+      font-size: 1rem;
+      color: $text-grey;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .code-block {
+      display: block;
+      font-family: $font-family-mono;
+      font-size: 0.875rem;
+      background: $element-dark;
+      color: $text-light;
+      padding: 1rem;
+      border-radius: 4px;
+      text-align: left;
+      overflow-x: auto;
+      white-space: pre;
+      line-height: 1.4;
+    }
+  }
 }

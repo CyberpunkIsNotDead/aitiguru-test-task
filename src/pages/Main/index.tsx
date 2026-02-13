@@ -24,6 +24,20 @@ const Main = () => {
       <p>
         Current count: <strong>{count}</strong>
       </p>
+
+      <div className={styles['mono-example']}>
+        <h2>Roboto Mono Font Example</h2>
+        <p className={styles['mono-text']}>
+          This text uses Roboto Mono font family.
+        </p>
+        <code className={styles['code-block']}>
+          {`function example() {
+  const message = "Hello, Roboto Mono!";
+  console.log(message);
+  return message;
+}`}
+        </code>
+      </div>
     </div>
   );
 };
