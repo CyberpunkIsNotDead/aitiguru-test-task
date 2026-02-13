@@ -1,0 +1,35 @@
+@use '@/vars' as *;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  gap: 2rem;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin: 0;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1.125rem;
+    color: $text-grey;
+    margin: 0;
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
