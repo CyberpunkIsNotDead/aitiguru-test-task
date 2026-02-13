@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import PasswordInput from './components/PasswordInput';
+import PasswordInput from '@/features/components/PasswordInput';
 import Button from '@/common/components/Button';
 import Checkbox from '@/common/components/Checkbox';
 import Page from '@/common/components/Page';

@@ -1,19 +1,32 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@/common/components/Button';
-import styles from './Main.module.scss';
 import Page from '@/common/components/Page';
+import PasswordInput from '@/features/components/PasswordInput';
+import Header from '@/common/components/Header';
+import SearchInput from '@/features/components/SearchInput';
+import styles from './Main.module.scss';
 
 const Main = () => {
   const [count, setCount] = useState(0);
 
   return (
-    <Page header={<div className={styles['header-text']}>Товары</div>}>
+    <Page
+      header={
+        <Header text='Товары'>
+          <SearchInput placeholder='Найти' />
+        </Header>
+      }
+    >
       <div className={styles.main}>
+        <div className={styles['search-container']}>
+          <SearchInput placeholder='Найти' />
+        </div>
+
         <h1>Welcome to React App</h1>
         <p>
           This is the main page built with React, TypeScript, and SCSS modules.
-          The page uses vertical centered flexbox layout and includes the custom
+          The page uses vertical centered flexbox layout and includes a custom
           Button component.
         </p>
 
@@ -40,6 +53,11 @@ const Main = () => {
   return message;
 }`}
           </code>
+        </div>
+
+        <div className={styles['password-section']}>
+          <h2>Password Input Example</h2>
+          <PasswordInput placeholder='Пароль' />
         </div>
 
         <div className={styles.navigation}>
