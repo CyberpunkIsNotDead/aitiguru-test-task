@@ -31,7 +31,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       />
     );
 
-    const wrapperClassName = `${styles['input-wrapper']} ${variant !== 'default' ? styles[`input-wrapper--${variant}`] : ''} ${className}`;
+    const wrapperClassName = `${styles['input-wrapper']} ${variant !== 'default' ? styles[`input-wrapper-${variant}`] : ''} ${className}`;
 
     return (
       <div className={wrapperClassName}>

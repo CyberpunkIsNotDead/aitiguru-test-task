@@ -11,13 +11,10 @@
   align-items: center;
   padding: 14px 16px;
   gap: 14px;
-
   min-height: 55px;
-
   background: $white;
   border: 1.5px solid $border-grey;
   border-radius: 12px;
-
   width: 100%;
 
   &:focus-within {
@@ -30,7 +27,7 @@
   }
 }
 
-.input-wrapper--grey {
+.input-wrapper-grey {
   background: $element-light-grey;
 }
 
