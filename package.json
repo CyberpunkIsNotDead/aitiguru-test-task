@@ -18,6 +18,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "radix-ui": "^1.4.3",
     "react": "^19.2.0",
     "react-compiler": "^1.0.2",

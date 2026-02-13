@@ -1,0 +1,57 @@
+@import '../../vars';
+
+/* Button */
+.button {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 15px;
+  width: 147px;
+  height: 42px;
+  min-height: 42px;
+  background: $element-vivid-blue;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+
+  /* Text styles */
+  color: $white;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+
+  /* Transitions */
+  transition: all 0.2s ease-in-out;
+
+  // &:hover {
+  //   background: color.adjust($element-vivid-blue, $lightness: -10%);
+  // }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $element-blue;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    background: $element-grey;
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
