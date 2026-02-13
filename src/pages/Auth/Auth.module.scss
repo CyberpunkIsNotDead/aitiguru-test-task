@@ -3,19 +3,24 @@
 .auth {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
-  padding: 2rem;
-  gap: 2rem;
+  gap: 1.5rem;
+}
 
-  .navigation {
-    a {
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.navigation {
+  a {
+    text-decoration: none;
+    
+    &:hover {
       text-decoration: none;
-      
-      &:hover {
-        text-decoration: none;
-      }
     }
   }
 }

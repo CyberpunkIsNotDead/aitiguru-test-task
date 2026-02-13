@@ -1,0 +1,73 @@
+@use '@/common/css/colors' as *;
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox {
+  /* Checkbox */
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 22px;
+  height: 22px;
+
+  /* White */
+  background: $white;
+
+  /* Gray 3 */
+  border: 1px solid $text-light-grey;
+  border-radius: 4px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: $element-blue;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $element-blue;
+    outline-offset: 2px;
+  }
+
+  &[data-state='checked'] {
+    &.checkbox-default {
+      background: $element-vivid-blue;
+      border-color: $element-vivid-blue;
+    }
+
+    &.checkbox-darker {
+      background: $element-blue;
+      border-color: $element-blue;
+    }
+  }
+}
+
+.checkbox-indicator {
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.label {
+  font-family: inherit;
+  font-size: inherit;
+  color: $text-dark;
+  user-select: none;
+  cursor: pointer;
+}
