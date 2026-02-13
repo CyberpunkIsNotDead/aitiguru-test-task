@@ -30,11 +30,19 @@ const Page = ({ header, children }: PageProps) => {
         <div
           className={`${styles.header} ${scrolled ? styles['header-collapsed'] : ''}`}
         >
-          <Card>{header}</Card>
+          <Card>
+            <div className={styles['max-width-wrapper']}>
+              <div className={styles['content-wrapper']}>{header}</div>
+            </div>
+          </Card>
         </div>
       )}
       <div className={styles.content}>
-        <Card fillSpace>{children}</Card>
+        <Card fillSpace>
+          <div className={styles['max-width-wrapper']}>
+            <div className={styles['content-wrapper']}>{children}</div>
+          </div>
+        </Card>
       </div>
     </div>
   );

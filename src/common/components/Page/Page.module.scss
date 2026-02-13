@@ -1,4 +1,5 @@
 @use '@/common/css/colors' as *;
+@use '@/common/css/sizes' as *;
 
 .page {
   display: flex;
@@ -27,4 +28,15 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.max-width-wrapper {
+  display: flex;
+  justify-content: center;
+  width: calc($page-max-width - ($margin-horizontal-card * 2));
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  width: 100%;
 }

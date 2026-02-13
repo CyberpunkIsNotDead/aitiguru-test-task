@@ -1,8 +1,9 @@
 @use '@/common/css/colors' as *;
+@use '@/common/css/sizes' as *;
 
 .card {
   background: $white;
-  padding: 26px 30px;
+  padding: $margin-horizontal-card 30px;
 }
 
 .card-fill {
