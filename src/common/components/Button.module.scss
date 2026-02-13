@@ -1,4 +1,4 @@
-@import '../../vars';
+@use '../../vars' as *;
 
 /* Button */
 .button {
@@ -32,9 +32,10 @@
   /* Transitions */
   transition: all 0.2s ease-in-out;
 
-  // &:hover {
-  //   background: color.adjust($element-vivid-blue, $lightness: -10%);
-  // }
+  &:hover {
+    background: #1e25c7;
+    transform: translateY(-1px);
+  }
 
   &:active {
     transform: translateY(0);
