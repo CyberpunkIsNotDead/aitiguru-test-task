@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@/common/components/Button';
 import Page from '@/common/components/Page';
-import PasswordInput from '@/features/components/PasswordInput';
+import PasswordInput from '@/features/user/ui/PasswordInput';
 import Header from '@/common/components/Header';
 import SearchInput from '@/features/components/SearchInput';
 import styles from './Main.module.scss';
