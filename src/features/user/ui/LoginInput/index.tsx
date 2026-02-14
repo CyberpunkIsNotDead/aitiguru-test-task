@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import Input from '@/common/components/Input';
-import Button from '@/common/components/Button';
+import Input from '@/shared/ui/Input';
+import Button from '@/shared/ui/Button';
 import UserIcon from '@/assets/icons/user.svg?react';
 import CloseIcon from '@/assets/icons/close.svg?react';
 

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '@/common/components/Button';
-import Page from '@/common/components/Page';
+import Button from '@/shared/ui/Button';
+import Page from '@/shared/ui/Page';
 import PasswordInput from '@/features/user/ui/PasswordInput';
-import Header from '@/common/components/Header';
+import Header from '@/shared/ui/Header';
 import SearchInput from '@/features/search/ui/SearchInput';
 import styles from './Main.module.scss';
 

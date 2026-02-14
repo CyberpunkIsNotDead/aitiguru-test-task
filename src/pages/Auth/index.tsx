@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import LoginInput from '@/features/user/ui/LoginInput';
 import PasswordInput from '@/features/user/ui/PasswordInput';
-import Button from '@/common/components/Button';
-import Checkbox from '@/common/components/Checkbox';
-import Page from '@/common/components/Page';
+import Button from '@/shared/ui/Button';
+import Checkbox from '@/shared/ui/Checkbox';
+import Page from '@/shared/ui/Page';
 import styles from './Auth.module.scss';
 
 const Auth = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '@/common/components/Input';
+import Input from '@/shared/ui/Input';
 import SearchIcon from '@/assets/icons/search.svg';
 
 interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
