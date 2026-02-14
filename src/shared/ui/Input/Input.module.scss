@@ -1,10 +1,23 @@
 @use '@/shared/css/colors' as *;
 
-.input-wrapper {
-  /* input */
-  box-sizing: border-box;
+.label-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-  /* Auto layout */
+.label {
+  width: 53px;
+  height: 27px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 150%;
+  letter-spacing: -0.015em;
+  color: $text-darker;
+  margin-bottom: 6px;
+}
+
+.input-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;

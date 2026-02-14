@@ -7,45 +7,36 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   asChild?: boolean;
   prepend?: React.ReactNode;
   append?: React.ReactNode;
+  label?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
-    {
-      variant = 'default',
-      asChild = false,
-      prepend,
-      append,
-      className = '',
-      ...props
-    },
+    { variant = 'default', prepend, append, label, className = '', ...props },
     ref
   ) => {
-    const InputComponent = asChild ? Slot : 'input';
-
     const inputElement = (
-      <InputComponent
-        className={styles['input-element']}
-        ref={ref}
-        {...props}
-      />
+      <input className={styles['input-element']} ref={ref} {...props} />
     );
 
     const wrapperClassName = `${styles['input-wrapper']} ${variant !== 'default' ? styles[`input-wrapper-${variant}`] : ''} ${className}`;
 
     return (
-      <div className={wrapperClassName}>
-        {prepend && (
-          <div className={styles.prepend}>
-            <Slot>{prepend}</Slot>
-          </div>
-        )}
-        {inputElement}
-        {append && (
-          <div className={styles.append}>
-            <Slot>{append}</Slot>
-          </div>
-        )}
+      <div className={styles['label-wrapper']}>
+        {label && <span className={styles.label}>{label}</span>}
+        <div className={wrapperClassName}>
+          {prepend && (
+            <div className={styles.prepend}>
+              <Slot>{prepend}</Slot>
+            </div>
+          )}
+          {inputElement}
+          {append && (
+            <div className={styles.append}>
+              <Slot>{append}</Slot>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

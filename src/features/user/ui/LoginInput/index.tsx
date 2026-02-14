@@ -64,6 +64,7 @@ const LoginInput = ({
           <CloseIcon style={{ color: 'currentColor' }} />
         </Button>
       }
+      label='Логин'
     />
   );
 };

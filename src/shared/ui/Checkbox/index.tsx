@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
+import * as LabelPrimitive from '@radix-ui/react-label';
 import styles from './Checkbox.module.scss';
 
 interface CheckboxProps extends React.ComponentPropsWithoutRef<
@@ -10,11 +11,14 @@ interface CheckboxProps extends React.ComponentPropsWithoutRef<
 
 const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
   ({ variant = 'default', className = '', children, ...props }, ref) => {
+    const checkboxId = React.useId();
+
     return (
       <div className={`${styles['checkbox-container']} ${className}`}>
         <CheckboxPrimitive.Root
           ref={ref}
           className={`${styles['checkbox']} ${styles[`checkbox-${variant}`]}`}
+          id={checkboxId}
           {...props}
         >
           <CheckboxPrimitive.Indicator className={styles['checkbox-indicator']}>
@@ -29,7 +33,11 @@ const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
             </svg>
           </CheckboxPrimitive.Indicator>
         </CheckboxPrimitive.Root>
-        {children && <span className={styles['label']}>{children}</span>}
+        {children && (
+          <LabelPrimitive.Root htmlFor={checkboxId} className={styles['label']}>
+            {children}
+          </LabelPrimitive.Root>
+        )}
       </div>
     );
   }

@@ -76,6 +76,7 @@ const PasswordInput = ({
           </Button>
         </>
       }
+      label='Пароль'
     />
   );
 };
