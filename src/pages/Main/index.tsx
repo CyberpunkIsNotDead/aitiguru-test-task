@@ -4,7 +4,7 @@ import Button from '@/common/components/Button';
 import Page from '@/common/components/Page';
 import PasswordInput from '@/features/user/ui/PasswordInput';
 import Header from '@/common/components/Header';
-import SearchInput from '@/features/components/SearchInput';
+import SearchInput from '@/features/search/ui/SearchInput';
 import styles from './Main.module.scss';
 
 const Main = () => {
