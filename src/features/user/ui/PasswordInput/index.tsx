@@ -4,6 +4,7 @@ import Button from '@/shared/ui/Button';
 import LockIcon from '@/assets/icons/lock.svg?react';
 import EyeOffIcon from '@/assets/icons/eyeOff.svg?react';
 import CloseIcon from '@/assets/icons/close.svg?react';
+import styles from './PasswordInput.module.scss';
 
 interface PasswordInputProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -63,16 +64,16 @@ const PasswordInput = ({
       onChange={handleChange}
       prepend={
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <LockIcon width={20} height={20} style={{ color: 'currentColor' }} />
+          <LockIcon width={20} height={20} className={styles['icon-lock']} />
         </div>
       }
       append={
         <>
           <Button variant='opaque' onClick={clearInput}>
-            <CloseIcon style={{ color: 'currentColor' }} />
+            <CloseIcon className={styles['icon-close']} />
           </Button>
           <Button variant='opaque' onClick={togglePasswordVisibility}>
-            <EyeOffIcon style={{ color: 'currentColor' }} />
+            <EyeOffIcon className={styles['icon-eye-off']} />
           </Button>
         </>
       }

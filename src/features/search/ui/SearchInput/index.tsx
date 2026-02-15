@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from '@/shared/ui/Input';
-import SearchIcon from '@/assets/icons/search.svg';
+import SearchIcon from '@/assets/icons/search.svg?react';
+import styles from './SearchInput.module.scss';
 
 interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
@@ -12,7 +13,7 @@ const SearchInput = ({ placeholder, ...props }: SearchInputProps) => {
       {...props}
       placeholder={placeholder}
       variant='grey'
-      prepend={<img src={SearchIcon} alt='Search' width='24' height='24' />}
+      prepend={<SearchIcon className={styles['icon-search']} />}
     />
   );
 };

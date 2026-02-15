@@ -1,0 +1,6 @@
+@use '@/shared/css/colors' as *;
+
+.icon-user,
+.icon-close {
+  color: $text-light-grey;
+}

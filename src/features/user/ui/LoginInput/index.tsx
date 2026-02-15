@@ -3,6 +3,7 @@ import Input from '@/shared/ui/Input';
 import Button from '@/shared/ui/Button';
 import UserIcon from '@/assets/icons/user.svg?react';
 import CloseIcon from '@/assets/icons/close.svg?react';
+import styles from './LoginInput.module.scss';
 
 interface LoginInputProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -56,12 +57,12 @@ const LoginInput = ({
       onChange={handleChange}
       prepend={
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <UserIcon width={20} height={20} style={{ color: 'currentColor' }} />
+          <UserIcon width={20} height={20} className={styles['icon-user']} />
         </div>
       }
       append={
         <Button variant='opaque' onClick={clearInput}>
-          <CloseIcon style={{ color: 'currentColor' }} />
+          <CloseIcon className={styles['icon-close']} />
         </Button>
       }
       label='Логин'
