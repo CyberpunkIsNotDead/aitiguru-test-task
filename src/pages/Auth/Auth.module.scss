@@ -13,12 +13,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 58px 48px;
+  padding: 48px;
   gap: 32px;
-  width: 527px;
-  background: $white;
-  box-shadow: 0 24px 32px rgb(0 0 0 / 4%);
-  border-radius: 40px;
+  background: linear-gradient(
+    180deg,
+    rgb(35 35 35 / 3%) 0%,
+    rgb(35 35 35 / 0%) 50%
+  );
+  border: 6px solid $white;
+  border-radius: 34px;
+  width: 515px;
+  box-shadow: 0 24px 32px rgb(0 0 0 / 4%)
 }
 
 .auth-logo-wrapper {
@@ -31,11 +36,7 @@
   width: 52px;
   height: 52px;
   background:
-    linear-gradient(
-      360deg,
-      rgb(35 35 35 / 0%) 50%,
-      rgb(35 35 35 / 6%) 100%
-    ),
+    linear-gradient(360deg, rgb(35 35 35 / 0%) 50%, rgb(35 35 35 / 6%) 100%),
     $white;
   box-shadow:
     0 0 0 2px $white,
@@ -58,6 +59,20 @@
   font-size: 18px;
   line-height: 150%;
   color: $text-light-grey;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+
+.auth-checkbox-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 4px 0;
 }
 
 .auth-button {

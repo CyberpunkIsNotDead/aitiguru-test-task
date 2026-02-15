@@ -17,28 +17,34 @@ const Auth = () => {
           </div>
 
           <h1 className={styles['auth-header']}>Добро пожаловать!</h1>
+
           <h2 className={styles['auth-subheader']}>
             Пожалуйста, авторизируйтесь
           </h2>
 
-          <LoginInput />
-          <PasswordInput />
+          <form className={styles['auth-form']}>
+            <LoginInput />
 
-          <div className={styles['checkboxes']}>
-            <Checkbox variant='default'>Запомнить данные</Checkbox>
-          </div>
+            <PasswordInput />
 
-          <div className={styles['navigation']}>
-            <Link to='/'>
-              <Button className={styles['auth-button']}>Войти</Button>
-            </Link>
-          </div>
+            <div className={styles['auth-checkbox-wrapper']}>
+              <Checkbox variant='default'>Запомнить данные</Checkbox>
+            </div>
 
-          <div className={styles['auth-or-wrapper']}>
-            <Line />
-            <span className={styles['auth-or']}>или</span>
-            <Line />
-          </div>
+            <div className={styles['navigation']}>
+              <Link to='/'>
+                <Button className={styles['auth-button']}>Войти</Button>
+              </Link>
+            </div>
+
+            <div className={styles['auth-or-wrapper']}>
+              <Line />
+
+              <span className={styles['auth-or']}>или</span>
+
+              <Line />
+            </div>
+          </form>
 
           <div className={styles['auth-create-wrapper']}>
             <span className={styles['auth-create-text']}>Нет аккаунта?</span>
