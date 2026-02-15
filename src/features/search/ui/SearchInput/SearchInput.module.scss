@@ -3,3 +3,9 @@
 .icon-search {
   color: $text-grey;
 }
+
+.search-input > div {
+  padding: 12px 20px;
+  gap: 8px;
+  min-height: 48px;
+}

@@ -13,6 +13,7 @@ const SearchInput = ({ placeholder, ...props }: SearchInputProps) => {
       {...props}
       placeholder={placeholder}
       variant='grey'
+      className={styles['search-input']}
       prepend={<SearchIcon className={styles['icon-search']} />}
     />
   );

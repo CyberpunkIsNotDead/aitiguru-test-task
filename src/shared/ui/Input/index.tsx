@@ -1,10 +1,10 @@
 import React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import styles from './Input.module.scss';
+import classNames from 'classnames';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   variant?: 'default' | 'grey';
-  asChild?: boolean;
   prepend?: React.ReactNode;
   append?: React.ReactNode;
   label?: string;
@@ -19,12 +19,20 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <input className={styles['input-element']} ref={ref} {...props} />
     );
 
-    const wrapperClassName = `${styles['input-wrapper']} ${variant !== 'default' ? styles[`input-wrapper-${variant}`] : ''} ${className}`;
+    const componentWrapperClassname = classNames({
+      [styles['component-wrapper']]: true,
+      [className]: className,
+    });
+
+    const inputWrapperClassName = classNames({
+      [styles['input-wrapper']]: true,
+      [styles[`input-wrapper-${variant}`]]: variant,
+    });
 
     return (
-      <div className={styles['label-wrapper']}>
+      <div className={componentWrapperClassname}>
         {label && <span className={styles.label}>{label}</span>}
-        <div className={wrapperClassName}>
+        <div className={inputWrapperClassName}>
           {prepend && (
             <div className={styles.prepend}>
               <Slot>{prepend}</Slot>
