@@ -3,16 +3,10 @@ import styles from './Header.module.scss';
 
 interface HeaderProps {
   children: React.ReactNode;
-  text: string;
 }
 
-const Header = ({ children, text }: HeaderProps) => {
-  return (
-    <div className={styles.header}>
-      <div className={styles['header-text']}>{text}</div>
-      <div className={styles['header-content']}>{children}</div>
-    </div>
-  );
+const Header = ({ children }: HeaderProps) => {
+  return <div className={styles.header}>{children}</div>;
 };
 
 export default Header;

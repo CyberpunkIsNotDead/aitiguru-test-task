@@ -1,0 +1,22 @@
+@use '@/shared/css/colors' as *;
+
+.header-text {
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 45px;
+  color: $text-darker;
+}
+
+.header-content {
+  width: 1024px;
+}
+
+.header-controls {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}

@@ -1,70 +1,50 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Button from '@/shared/ui/Button';
 import Page from '@/shared/ui/Page';
-import PasswordInput from '@/features/user/ui/PasswordInput';
-import Header from '@/shared/ui/Header';
 import SearchInput from '@/features/search/ui/SearchInput';
 import styles from './Main.module.scss';
+import PlusCircleIcon from '@/assets/icons/plusCircle.svg?react';
+import RefreshIcon from '@/assets/icons/refresh.svg?react';
+import { Link } from 'react-router-dom';
+import ItemsHeader from '@/widgets/ui/ItemsHeader';
 
 const Main = () => {
-  const [count, setCount] = useState(0);
-
   return (
     <Page
       header={
-        <Header text='Товары'>
+        <ItemsHeader
+          text='Товары'
+          controls={
+            <Link to='/auth'>
+              <Button>Выйти</Button>
+            </Link>
+          }
+        >
           <SearchInput placeholder='Найти' />
-        </Header>
+        </ItemsHeader>
       }
     >
-      <div className={styles.main}>
-        <div className={styles['search-container']}>
-          <SearchInput placeholder='Найти' />
+      <div className={styles['main-content']}>
+        <div className={styles['main-top']}>
+          <h1 className={styles['main-top-text']}>Все позиции</h1>
+
+          <div className={styles['main-top-buttons']}>
+            <Button variant='white' isSquare>
+              <RefreshIcon />
+            </Button>
+
+            <Button>
+              <>
+                <PlusCircleIcon />
+
+                <span>Добавить</span>
+              </>
+            </Button>
+          </div>
         </div>
 
-        <h1>Welcome to React App</h1>
-        <p>
-          This is the main page built with React, TypeScript, and SCSS modules.
-          The page uses vertical centered flexbox layout and includes a custom
-          Button component.
-        </p>
+        <div></div>
 
-        <div className={styles['button-container']}>
-          <Button onClick={() => setCount((count) => count + 1)}>
-            Count: {count}
-          </Button>
-          <Button onClick={() => setCount(0)}>Reset</Button>
-        </div>
-
-        <p>
-          Current count: <strong>{count}</strong>
-        </p>
-
-        <div className={styles['mono-example']}>
-          <h2>Roboto Mono Font Example</h2>
-          <p className={styles['mono-text']}>
-            This text uses Roboto Mono font family.
-          </p>
-          <code className={styles['code-block']}>
-            {`function example() {
-  const message = "Hello, Roboto Mono!";
-  console.log(message);
-  return message;
-}`}
-          </code>
-        </div>
-
-        <div className={styles['password-section']}>
-          <h2>Password Input Example</h2>
-          <PasswordInput placeholder='Пароль' />
-        </div>
-
-        <div className={styles.navigation}>
-          <Link to='/auth'>
-            <Button>Go to Auth Page</Button>
-          </Link>
-        </div>
+        <div></div>
       </div>
     </Page>
   );
