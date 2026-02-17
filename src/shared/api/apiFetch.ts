@@ -46,7 +46,9 @@ const apiFetch = async <T = unknown>(
   url: string,
   options: ApiFetchOptions = {}
 ): Promise<T> => {
-  const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
+  const fullUrl = url.startsWith('http')
+    ? url
+    : `${API_BASE_URL.replace(/\/$/, '')}${url}`;
 
   const {
     timeout = DEFAULT_TIMEOUT,
@@ -138,7 +140,9 @@ const queryFetcher = async <T = unknown>({
   meta?: { abortController?: AbortController };
 }): Promise<T> => {
   const [url] = queryKey;
-  const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
+  const fullUrl = url.startsWith('http')
+    ? url
+    : `${API_BASE_URL.replace(/\/$/, '')}${url}`;
   return apiFetch<T>(fullUrl, {
     abortController: meta?.abortController,
   });
@@ -158,7 +162,9 @@ const mutationFetcher = async <T = unknown, V = unknown>({
   body?: V;
   options?: ApiFetchOptions;
 }): Promise<T> => {
-  const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
+  const fullUrl = url.startsWith('http')
+    ? url
+    : `${API_BASE_URL.replace(/\/$/, '')}${url}`;
   return apiFetch<T>(fullUrl, {
     method,
     body: body ? JSON.stringify(body) : undefined,
@@ -174,7 +180,9 @@ const createCancellableRequest = <T = unknown>(
   options: ApiFetchOptions = {}
 ) => {
   const controller = createAbortController();
-  const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
+  const fullUrl = url.startsWith('http')
+    ? url
+    : `${API_BASE_URL.replace(/\/$/, '')}${url}`;
 
   const request = apiFetch<T>(fullUrl, {
     ...options,

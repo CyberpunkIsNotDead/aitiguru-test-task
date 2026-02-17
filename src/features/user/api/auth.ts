@@ -14,7 +14,7 @@ interface User {
 }
 
 interface AuthUser extends User {
-  token: string;
+  accessToken: string;
   refreshToken: string;
 }
 
@@ -22,6 +22,7 @@ interface LoginCredentials {
   username: string;
   password: string;
   expiresInMins?: number;
+  persist?: boolean;
 }
 
 interface AuthState {
@@ -41,20 +42,25 @@ interface RefreshResponse extends AuthUser {}
 
 // API Functions
 const login = async (credentials: LoginCredentials): Promise<LoginResponse> => {
-  return apiFetch<LoginResponse>('/auth/login', {
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+  const { persist: _, ...loginData } = credentials;
+
+  const response = await apiFetch<LoginResponse>('/auth/login', {
     method: 'POST',
-    body: JSON.stringify(credentials),
+    body: JSON.stringify(loginData),
     headers: {
       'Content-Type': 'application/json',
     },
   });
+
+  return response;
 };
 
-const logout = async (token: string): Promise<LogoutResponse> => {
+const logout = async (accessToken: string): Promise<LogoutResponse> => {
   const response = await apiFetch<LogoutResponse>('/auth/logout', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
 
@@ -79,10 +85,10 @@ const refreshToken = async (
   });
 };
 
-const getCurrentUser = async (token: string): Promise<User> => {
+const getCurrentUser = async (accessToken: string): Promise<User> => {
   return apiFetch<User>('/auth/me', {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   });
 };
@@ -91,13 +97,20 @@ const getCurrentUser = async (token: string): Promise<User> => {
 const useLogin = () => {
   return useMutation<AuthUser, Error, LoginCredentials>({
     mutationFn: (credentials: LoginCredentials) => login(credentials),
-    onSuccess: (data) => {
-      // Store token in localStorage or secure storage
-      localStorage.setItem('auth_token', data.token);
-      localStorage.setItem('refresh_token', data.refreshToken);
+    onSuccess: (data, variables) => {
+      // Store token based on persist option
+      if (variables.persist) {
+        // Use localStorage for persistent sessions
+        localStorage.setItem('auth_token', data.accessToken);
+        localStorage.setItem('refresh_token', data.refreshToken);
+      } else {
+        // Use sessionStorage for non-persistent sessions
+        sessionStorage.setItem('auth_token', data.accessToken);
+        sessionStorage.setItem('refresh_token', data.refreshToken);
+      }
 
       // Prefetch user data
-      getCurrentUser(data.token);
+      getCurrentUser(data.accessToken);
     },
   });
 };
@@ -105,22 +118,28 @@ const useLogin = () => {
 const useLogout = () => {
   return useMutation<void, Error, void>({
     mutationFn: async () => {
-      const token = localStorage.getItem('auth_token');
+      // Try to get token from both storages
+      const token =
+        localStorage.getItem('auth_token') ??
+        sessionStorage.getItem('auth_token');
       if (!token) {
         throw new Error('No token found');
       }
       await logout(token);
     },
     onSuccess: () => {
-      // Clear tokens from storage
+      // Clear tokens from both storages
       localStorage.removeItem('auth_token');
       localStorage.removeItem('refresh_token');
+      sessionStorage.removeItem('auth_token');
+      sessionStorage.removeItem('refresh_token');
     },
   });
 };
 
 const useCurrentUser = () => {
-  const token = localStorage.getItem('auth_token');
+  const token =
+    localStorage.getItem('auth_token') ?? sessionStorage.getItem('auth_token');
 
   return useQuery<User, Error>({
     queryKey: ['currentUser'],
@@ -140,7 +159,7 @@ const useRefreshToken = () => {
     mutationFn: (refreshTokenValue: string) => refreshToken(refreshTokenValue),
     onSuccess: (data) => {
       // Update stored tokens
-      localStorage.setItem('auth_token', data.token);
+      localStorage.setItem('auth_token', data.accessToken);
       localStorage.setItem('refresh_token', data.refreshToken);
     },
   });

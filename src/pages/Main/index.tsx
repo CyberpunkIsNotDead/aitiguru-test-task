@@ -4,19 +4,34 @@ import { SearchInput } from '@/features/search/ui/SearchInput';
 import styles from './Main.module.scss';
 import PlusCircleIcon from '@/assets/icons/plusCircle.svg?react';
 import RefreshIcon from '@/assets/icons/refresh.svg?react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ItemsHeader } from '@/widgets/ui/ItemsHeader';
+import { useLogout } from '@/features/user/api/auth';
 
 const Main = () => {
+  const navigate = useNavigate();
+  const logoutMutation = useLogout();
+
+  const handleLogout = () => {
+    logoutMutation
+      .mutateAsync()
+      .then(() => {
+        navigate('/auth');
+      })
+      .catch((error) => {
+        console.error('Logout failed:', error);
+      });
+  };
+
   return (
     <Page
       header={
         <ItemsHeader
           text='Товары'
           controls={
-            <Link to='/auth'>
-              <Button>Выйти</Button>
-            </Link>
+            <Button onClick={handleLogout} disabled={logoutMutation.isPending}>
+              Выйти
+            </Button>
           }
         >
           <SearchInput placeholder='Найти' />
