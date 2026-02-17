@@ -7,10 +7,22 @@ import RefreshIcon from '@/assets/icons/refresh.svg?react';
 import { useNavigate } from 'react-router-dom';
 import { ItemsHeader } from '@/widgets/ui/ItemsHeader';
 import { useLogout } from '@/features/user/api/auth';
+import { useState } from 'react';
+import ProductsTable from '@/features/products/ui/ProductsTable';
+import Pagination from '@/features/products/ui/Pagination';
+import { useProducts } from '@/features/products/api/products';
 
 const Main = () => {
   const navigate = useNavigate();
   const logoutMutation = useLogout();
+  const [currentPage, setCurrentPage] = useState(1);
+  const sortBy = 'id';
+  const order: 'asc' | 'desc' = 'asc';
+
+  const limit = 20;
+
+  // Get products data to access total items count
+  const { data: productsData } = useProducts(currentPage, limit, sortBy, order);
 
   const handleLogout = () => {
     logoutMutation
@@ -57,9 +69,22 @@ const Main = () => {
           </div>
         </div>
 
-        <div></div>
+        <div className={styles['main-table']}>
+          <ProductsTable
+            page={currentPage}
+            sortBy={sortBy}
+            order={order}
+            limit={limit}
+          />
+        </div>
 
-        <div></div>
+        <div className={styles['main-pagination']}>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={Math.ceil((productsData?.total ?? 0) / limit)}
+            onPageChange={setCurrentPage}
+          />
+        </div>
       </div>
     </Page>
   );
