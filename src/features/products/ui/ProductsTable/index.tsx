@@ -13,12 +13,19 @@ interface ProductsTableProps {
   data?: Product[];
   isLoading?: boolean;
   error?: string;
+  sortBy?: string;
+  order?: 'asc' | 'desc';
+  // eslint-disable-next-line no-unused-vars
+  onSortChange?: (field: string) => void;
 }
 
 const ProductsTable = ({
   data,
   isLoading = false,
   error,
+  sortBy,
+  order,
+  onSortChange,
 }: ProductsTableProps) => {
   const [selectedRows, setSelectedRows] = useState<Set<number>>(new Set());
 
@@ -76,7 +83,19 @@ const ProductsTable = ({
       accessorKey: 'title',
       header: () => (
         <div className={styles['product-title-header']}>
-          <span>Наименование</span>
+          <Button
+            variant='opaque'
+            onClick={() => onSortChange?.('title')}
+            className={classNames(styles['sort-button'], styles.left)}
+          >
+            <span>Наименование</span>
+            {sortBy === 'title' &&
+              (order === 'asc' ? (
+                <span className={styles['sort-arrow']}>↑</span>
+              ) : (
+                <span className={styles['sort-arrow']}>↓</span>
+              ))}
+          </Button>
         </div>
       ),
       cell: ({ row }) => {
@@ -101,7 +120,21 @@ const ProductsTable = ({
     },
     {
       accessorKey: 'brand',
-      header: 'Вендор',
+      header: () => (
+        <Button
+          variant='opaque'
+          onClick={() => onSortChange?.('brand')}
+          className={styles['sort-button']}
+        >
+          <span>Вендор</span>
+          {sortBy === 'brand' &&
+            (order === 'asc' ? (
+              <span className={styles['sort-arrow']}>↑</span>
+            ) : (
+              <span className={styles['sort-arrow']}>↓</span>
+            ))}
+        </Button>
+      ),
       cell: ({ row }) => {
         const product = row.original;
 
@@ -112,11 +145,39 @@ const ProductsTable = ({
     },
     {
       accessorKey: 'sku',
-      header: 'Артикул',
+      header: () => (
+        <Button
+          variant='opaque'
+          onClick={() => onSortChange?.('sku')}
+          className={styles['sort-button']}
+        >
+          <span>Артикул</span>
+          {sortBy === 'sku' &&
+            (order === 'asc' ? (
+              <span className={styles['sort-arrow']}>↑</span>
+            ) : (
+              <span className={styles['sort-arrow']}>↓</span>
+            ))}
+        </Button>
+      ),
     },
     {
       accessorKey: 'rating',
-      header: 'Оценка',
+      header: () => (
+        <Button
+          variant='opaque'
+          onClick={() => onSortChange?.('rating')}
+          className={styles['sort-button']}
+        >
+          <span>Оценка</span>
+          {sortBy === 'rating' &&
+            (order === 'asc' ? (
+              <span className={styles['sort-arrow']}>↑</span>
+            ) : (
+              <span className={styles['sort-arrow']}>↓</span>
+            ))}
+        </Button>
+      ),
       cell: ({ row: { original: product } }) => {
         const formattedRating = Number(product.rating).toFixed(1);
 
@@ -134,7 +195,21 @@ const ProductsTable = ({
     },
     {
       accessorKey: 'price',
-      header: 'Цена, ₽',
+      header: () => (
+        <Button
+          variant='opaque'
+          onClick={() => onSortChange?.('price')}
+          className={styles['sort-button']}
+        >
+          <span>Цена, ₽</span>
+          {sortBy === 'price' &&
+            (order === 'asc' ? (
+              <span className={styles['sort-arrow']}>↑</span>
+            ) : (
+              <span className={styles['sort-arrow']}>↓</span>
+            ))}
+        </Button>
+      ),
       cell: ({ row: { original: product } }) => {
         const [integer, decimals] = product.price.toString().split('.');
 

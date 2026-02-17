@@ -93,7 +93,8 @@
 .product-price-cell {
   font-family: 'Roboto Mono', monospace;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
+  color: $text-darker;
 
   .product-price-decimals {
     color: $text-light-grey;
@@ -123,4 +124,30 @@
       color: $text-light-grey;
     }
   }
+}
+
+.sort-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: inherit;
+  width: 100%;
+
+  &.left {
+    justify-content: start;
+  }
+  
+  &:hover {
+    color: $text-darker;
+  }
+}
+
+.sort-arrow {
+  font-size: 12px;
+  font-weight: bold;
+  color: $element-vivid-blue;
 }

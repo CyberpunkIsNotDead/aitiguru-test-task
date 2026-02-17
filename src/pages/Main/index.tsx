@@ -17,8 +17,8 @@ const Main = () => {
   const logoutMutation = useLogout();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
-  const sortBy = 'id';
-  const order: 'asc' | 'desc' = 'asc';
+  const [sortBy, setSortBy] = useState('title');
+  const [order, setOrder] = useState<'asc' | 'desc'>('asc');
 
   const limit = 20;
 
@@ -45,6 +45,18 @@ const Main = () => {
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
     setCurrentPage(1); // Reset to first page when searching
+  };
+
+  const handleSortChange = (field: string) => {
+    if (sortBy === field) {
+      // Toggle order if same field
+      setOrder(order === 'asc' ? 'desc' : 'asc');
+    } else {
+      // Change field and reset to asc
+      setSortBy(field);
+      setOrder('asc');
+    }
+    setCurrentPage(1); // Reset to first page when sorting
   };
 
   const skip = Number(productsData?.skip);
@@ -96,6 +108,9 @@ const Main = () => {
             data={productsData?.products}
             isLoading={isFetching}
             error={productsData ? undefined : 'Ошибка загрузки данных'}
+            sortBy={sortBy}
+            order={order}
+            onSortChange={handleSortChange}
           />
         </div>
 
