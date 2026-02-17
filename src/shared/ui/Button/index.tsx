@@ -13,12 +13,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     { children, variant = 'default', className = '', isSquare, ...props },
     ref
   ) => {
-    const buttonClassName = classNames({
-      [styles.button]: true,
-      [styles[`button-${variant}`]]: variant,
-      [className]: className,
-      [styles['button-square']]: isSquare,
-    });
+    const buttonClassName = classNames(
+      styles.button,
+      variant && styles[`button-${variant}`],
+      className,
+      isSquare && styles['button-square']
+    );
 
     return (
       <button className={buttonClassName} ref={ref} {...props}>

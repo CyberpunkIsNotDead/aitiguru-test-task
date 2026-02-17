@@ -19,15 +19,15 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <input className={styles['input-element']} ref={ref} {...props} />
     );
 
-    const componentWrapperClassname = classNames({
-      [styles['component-wrapper']]: true,
-      [className]: className,
-    });
+    const componentWrapperClassname = classNames(
+      styles['component-wrapper'],
+      className
+    );
 
-    const inputWrapperClassName = classNames({
-      [styles['input-wrapper']]: true,
-      [styles[`input-wrapper-${variant}`]]: variant,
-    });
+    const inputWrapperClassName = classNames(
+      styles['input-wrapper'],
+      variant && styles[`input-wrapper-${variant}`]
+    );
 
     return (
       <div className={componentWrapperClassname}>
