@@ -17,4 +17,4 @@ const Card = ({ children, fillSpace = false, ...props }: CardProps) => {
   );
 };
 
-export default Card;
+export { Card };

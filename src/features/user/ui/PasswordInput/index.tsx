@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import Input from '@/shared/ui/Input';
-import Button from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
 import LockIcon from '@/assets/icons/lock.svg?react';
 import EyeOffIcon from '@/assets/icons/eyeOff.svg?react';
 import CloseIcon from '@/assets/icons/close.svg?react';
@@ -82,4 +82,4 @@ const PasswordInput = ({
   );
 };
 
-export default PasswordInput;
+export { PasswordInput };

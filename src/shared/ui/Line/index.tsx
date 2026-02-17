@@ -8,4 +8,4 @@ const Line = ({
   return <div className={`${styles.line} ${className}`} {...props}></div>;
 };
 
-export default Line;
+export { Line };

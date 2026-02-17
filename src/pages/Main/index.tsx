@@ -1,11 +1,11 @@
-import Button from '@/shared/ui/Button';
-import Page from '@/shared/ui/Page';
-import SearchInput from '@/features/search/ui/SearchInput';
+import { Button } from '@/shared/ui/Button';
+import { Page } from '@/shared/ui/Page';
+import { SearchInput } from '@/features/search/ui/SearchInput';
 import styles from './Main.module.scss';
 import PlusCircleIcon from '@/assets/icons/plusCircle.svg?react';
 import RefreshIcon from '@/assets/icons/refresh.svg?react';
 import { Link } from 'react-router-dom';
-import ItemsHeader from '@/widgets/ui/ItemsHeader';
+import { ItemsHeader } from '@/widgets/ui/ItemsHeader';
 
 const Main = () => {
   return (
@@ -50,4 +50,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export { Main };

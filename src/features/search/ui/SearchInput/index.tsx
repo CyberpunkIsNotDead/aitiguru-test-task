@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '@/shared/ui/Input';
+import { Input } from '@/shared/ui/Input';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import styles from './SearchInput.module.scss';
 
@@ -19,4 +19,4 @@ const SearchInput = ({ placeholder, ...props }: SearchInputProps) => {
   );
 };
 
-export default SearchInput;
+export { SearchInput };

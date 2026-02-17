@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import LoginInput from '@/features/user/ui/LoginInput';
-import PasswordInput from '@/features/user/ui/PasswordInput';
-import Button from '@/shared/ui/Button';
-import Checkbox from '@/shared/ui/Checkbox';
-import Page from '@/shared/ui/Page';
+import { LoginInput } from '@/features/user/ui/LoginInput';
+import { PasswordInput } from '@/features/user/ui/PasswordInput';
+import { Button } from '@/shared/ui/Button';
+import { Checkbox } from '@/shared/ui/Checkbox';
+import { Page } from '@/shared/ui/Page';
 import styles from './Auth.module.scss';
-import Line from '@/shared/ui/Line';
+import { Line } from '@/shared/ui/Line';
 
 const Auth = () => {
   return (
@@ -57,4 +57,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export { Auth };

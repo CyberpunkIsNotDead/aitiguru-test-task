@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import Input from '@/shared/ui/Input';
-import Button from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
 import UserIcon from '@/assets/icons/user.svg?react';
 import CloseIcon from '@/assets/icons/close.svg?react';
 import styles from './LoginInput.module.scss';
@@ -70,4 +70,4 @@ const LoginInput = ({
   );
 };
 
-export default LoginInput;
+export { LoginInput };

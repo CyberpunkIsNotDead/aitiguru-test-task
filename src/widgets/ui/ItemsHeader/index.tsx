@@ -1,4 +1,4 @@
-import Header from '@/shared/ui/Header';
+import { Header } from '@/shared/ui/Header';
 import styles from './ItemsHeader.module.scss';
 import type React from 'react';
 
@@ -24,4 +24,4 @@ const ItemsHeader = ({ text, children, controls }: ItemsHeaderProps) => {
   );
 };
 
-export default ItemsHeader;
+export { ItemsHeader };

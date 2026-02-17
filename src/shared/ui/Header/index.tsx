@@ -9,4 +9,4 @@ const Header = ({ children }: HeaderProps) => {
   return <div className={styles.header}>{children}</div>;
 };
 
-export default Header;
+export { Header };
