@@ -5,11 +5,11 @@ import styles from './Main.module.scss';
 import PlusCircleIcon from '@/assets/icons/plusCircle.svg?react';
 import RefreshIcon from '@/assets/icons/refresh.svg?react';
 import { useNavigate } from 'react-router-dom';
-import { ItemsHeader } from '@/widgets/ui/ItemsHeader';
+import { ItemsHeader } from '@/shared/ui/ItemsHeader';
 import { useLogout } from '@/features/user/api/auth';
 import { useState, useEffect } from 'react';
 import ProductsTable from '@/features/products/ui/ProductsTable';
-import Pagination from '@/features/products/ui/Pagination';
+import Pagination from '@/shared/ui/Pagination';
 import { useProducts } from '@/features/products/api/products';
 import { getSortState, saveSortState } from '@/shared/lib/sessionHelper';
 
