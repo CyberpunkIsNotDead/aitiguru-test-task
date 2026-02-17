@@ -3,12 +3,24 @@
 .product-table * {
   th {
     height: 73px;
+
+    &:first-child {
+      width: 1%;
+      min-width: 0;
+      padding-right: 0;
+    }
   }
 
   tr {
     .selected {
       border-left: 3px solid $element-blue;
     }
+  }
+
+  td:first-child {
+    width: 1%;
+    min-width: 0;
+    padding-right: 0;
   }
 }
 
