@@ -30,6 +30,7 @@ interface ProductsQueryParams {
   select?: string;
   sortBy?: string;
   order?: 'asc' | 'desc';
+  search?: string;
 }
 
 // API Functions
@@ -38,6 +39,7 @@ const getProducts = async ({
   skip = 0,
   sortBy = 'id',
   order = 'asc',
+  search,
 }: ProductsQueryParams = {}): Promise<ProductsResponse> => {
   const select = [
     'thumbnail',
@@ -49,6 +51,30 @@ const getProducts = async ({
     'price',
   ].join(',');
 
+  if (search) {
+    // Use dedicated search endpoint
+    const params = new URLSearchParams({
+      q: search,
+      limit: limit.toString(),
+      skip: skip.toString(),
+      select,
+      sortBy,
+      order,
+    });
+
+    const response = await apiFetch<ProductsResponse>(
+      `/products/search?${params.toString()}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    return response;
+  }
+
+  // Use regular products endpoint for non-search
   const params = new URLSearchParams({
     limit: limit.toString(),
     skip: skip.toString(),
@@ -74,13 +100,14 @@ const useProducts = (
   page = 1,
   limit = 30,
   sortBy = 'id',
-  order: 'asc' | 'desc' = 'asc'
+  order: 'asc' | 'desc' = 'asc',
+  search?: string
 ) => {
   const skip = (page - 1) * limit;
 
   return useQuery({
-    queryKey: ['products', { skip, limit, sortBy, order }],
-    queryFn: () => getProducts({ skip, limit, sortBy, order }),
+    queryKey: ['products', { skip, limit, sortBy, order, search }],
+    queryFn: () => getProducts({ skip, limit, sortBy, order, search }),
   });
 };
 

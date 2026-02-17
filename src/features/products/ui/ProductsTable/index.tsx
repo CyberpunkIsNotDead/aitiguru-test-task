@@ -1,5 +1,5 @@
 import { type ColumnDef, type Row } from '@tanstack/react-table';
-import { useProducts, type Product } from '@/features/products/api/products';
+import { type Product } from '@/features/products/api/products';
 import styles from './ProductsTable.module.scss';
 import { Checkbox } from '@/shared/ui/Checkbox';
 import Table from '@/shared/ui/Table';
@@ -10,26 +10,23 @@ import DotsThreeCircleIcon from '@/assets/icons/dotsThreeCircle.svg?react';
 import { useState } from 'react';
 
 interface ProductsTableProps {
-  page?: number;
-  limit?: number;
-  sortBy?: string;
-  order?: 'asc' | 'desc';
+  data?: Product[];
+  isLoading?: boolean;
+  error?: string;
 }
 
 const ProductsTable = ({
-  page = 1,
-  limit = 30,
-  sortBy = 'id',
-  order = 'asc',
+  data,
+  isLoading = false,
+  error,
 }: ProductsTableProps) => {
-  const { data, isLoading, error } = useProducts(page, limit, sortBy, order);
   const [selectedRows, setSelectedRows] = useState<Set<number>>(new Set());
 
   const columns: ColumnDef<Product>[] = [
     {
       accessorKey: 'checkbox',
       header: () => {
-        const allProducts = data?.products ?? [];
+        const allProducts = data ?? [];
         const allSelected =
           allProducts.length > 0 &&
           allProducts.every((product) => selectedRows.has(product.id));
@@ -187,7 +184,7 @@ const ProductsTable = ({
 
   return (
     <Table
-      data={data?.products ?? []}
+      data={data ?? []}
       columns={columns}
       className={styles['product-table']}
       isLoading={isLoading}

@@ -16,6 +16,7 @@ const Main = () => {
   const navigate = useNavigate();
   const logoutMutation = useLogout();
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
   const sortBy = 'id';
   const order: 'asc' | 'desc' = 'asc';
 
@@ -26,7 +27,8 @@ const Main = () => {
     currentPage,
     limit,
     sortBy,
-    order
+    order,
+    searchQuery
   );
 
   const handleLogout = () => {
@@ -38,6 +40,11 @@ const Main = () => {
       .catch((error) => {
         console.error('Logout failed:', error);
       });
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+    setCurrentPage(1); // Reset to first page when searching
   };
 
   const skip = Number(productsData?.skip);
@@ -57,7 +64,11 @@ const Main = () => {
             </Button>
           }
         >
-          <SearchInput placeholder='Найти' />
+          <SearchInput
+            placeholder='Найти'
+            value={searchQuery}
+            onChange={(e) => handleSearchChange(e.target.value)}
+          />
         </ItemsHeader>
       }
     >
@@ -82,10 +93,9 @@ const Main = () => {
 
         <div className={styles['main-table']}>
           <ProductsTable
-            page={currentPage}
-            sortBy={sortBy}
-            order={order}
-            limit={limit}
+            data={productsData?.products}
+            isLoading={isFetching}
+            error={productsData ? undefined : 'Ошибка загрузки данных'}
           />
         </div>
 
