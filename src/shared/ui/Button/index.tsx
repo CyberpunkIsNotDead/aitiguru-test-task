@@ -10,7 +10,14 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { children, variant = 'default', className = '', isSquare, ...props },
+    {
+      children,
+      variant = 'default',
+      className = '',
+      isSquare,
+      type = 'button',
+      ...props
+    },
     ref
   ) => {
     const buttonClassName = classNames(
@@ -21,7 +28,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     return (
-      <button className={buttonClassName} ref={ref} {...props}>
+      <button className={buttonClassName} ref={ref} type={type} {...props}>
         {children}
       </button>
     );

@@ -1,52 +1,114 @@
-.table-container {
-  width: 100%;
-  overflow-x: auto;
+@use '@/shared/css/colors' as *;
+
+.product-table * {
+  th {
+    height: 73px;
+  }
+
+  tr {
+    .selected {
+      border-left: 3px solid $element-blue;
+    }
+  }
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+.product-title-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.table th,
-.table td {
-  padding: 12px 16px;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.table th {
-  background-color: #f9fafb;
-  font-weight: 600;
-  color: #374151;
-  font-size: 14px;
-}
-
-.table td {
-  color: #6b7280;
-  font-size: 14px;
-}
-
-.table tbody tr:hover {
-  background-color: #f9fafb;
-}
-
-.table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.loading,
-.error {
-  padding: 20px;
+.product-price-header {
   text-align: center;
-  color: #6b7280;
-  font-size: 14px;
 }
 
-.error {
-  color: #ef4444;
+.product-title-cell {
+  display: flex;
+  align-items: center;
+  text-align: left;
+
+  .product-thumbnail {
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+    background: $element-grey;
+    border: 1px solid $border-light;
+    border-radius: 8px;
+    margin: 0 18px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .product-title {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 11px;
+      color: $text-darker;
+    }
+
+    .product-category {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 10px;
+      color: $text-light-grey;
+    }
+  }
+}
+
+.product-brand-cell {
+  font-weight: 700;
+  font-size: 16px;
+  color: $black;
+}
+
+.product-rating-cell {
+  .product-rating-low {
+    color: $red;
+  }
+}
+
+.product-price-cell {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+  font-size: 16px;
+
+  .product-price-decimals {
+    color: $text-light-grey;
+  }
+}
+
+.product-controls-cell {
+  display: flex;
+  justify-content: center;
+
+  .product-controls-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 0 8.5px;
+    width: 133px;
+
+    .product-plus-button {
+      padding: 0;
+      width: 52px;
+      height: 27px;
+      min-height: 27px;
+      border-radius: 23px;
+    }
+
+    .product-dots-button {
+      color: $text-light-grey;
+    }
+  }
 }

@@ -1,0 +1,53 @@
+@use '@/shared/css/colors' as *;
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 11.5px 18px;
+  text-align: center;
+  border-bottom: 1px solid $border-grey;
+}
+
+.table th {
+  font-weight: 700;
+  color: $text-light-grey;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.table td {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: $black;
+}
+
+.table tbody tr:hover {
+  background-color: $element-light-grey;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.loading,
+.error {
+  padding: 20px;
+  text-align: center;
+  color: $text-light-grey;
+  font-size: 14px;
+}
+
+.error {
+  color: #ef4444;
+}

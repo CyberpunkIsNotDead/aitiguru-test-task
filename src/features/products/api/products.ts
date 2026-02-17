@@ -39,7 +39,15 @@ const getProducts = async ({
   sortBy = 'id',
   order = 'asc',
 }: ProductsQueryParams = {}): Promise<ProductsResponse> => {
-  const select = ['title', 'brand', 'sku', 'rating', 'price'].join(',');
+  const select = [
+    'thumbnail',
+    'title',
+    'category',
+    'brand',
+    'sku',
+    'rating',
+    'price',
+  ].join(',');
 
   const params = new URLSearchParams({
     limit: limit.toString(),
