@@ -1,14 +1,24 @@
 #!/bin/sh
 
-# Pre-commit hook that runs linting
+# Pre-commit hook that runs linting and type checking
 # Exit on any error
 set -e
 
-echo "🔍 Running pre-commit linting..."
+echo "🔍 Running pre-commit checks..."
 
 # Get staged files
 STAGED_JS_TS=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|jsx|ts|tsx)$')
 STAGED_SCSS=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(css|scss)$')
+
+# Run TypeScript type checking if there are staged TS/TSX files
+if [ -n "$STAGED_JS_TS" ]; then
+    echo "Running TypeScript type checking..."
+    npm run type-check
+    if [ $? -ne 0 ]; then
+        echo "❌ TypeScript type checking failed. Fix issues before committing."
+        exit 1
+    fi
+fi
 
 # Run ESLint only on JS/TS files
 if [ -n "$STAGED_JS_TS" ]; then
@@ -30,5 +40,5 @@ if [ -n "$STAGED_SCSS" ]; then
     fi
 fi
 
-echo "✅ All linting checks passed!"
+echo "✅ All pre-commit checks passed!"
 exit 0

@@ -21,7 +21,7 @@ const LoginInput = ({
   onChange,
   ...props
 }: LoginInputProps) => {
-  const [internalValue, setInternalValue] = useState(controlledValue || '');
+  const [internalValue, setInternalValue] = useState(controlledValue ?? '');
   const inputRef = useRef<HTMLInputElement>(null);
 
   const clearInput = () => {
@@ -45,8 +45,7 @@ const LoginInput = ({
   };
 
   // Use internal value if not controlled, otherwise use controlled value
-  const currentValue =
-    controlledValue !== undefined ? controlledValue : internalValue;
+  const currentValue = controlledValue ?? internalValue;
 
   return (
     <Input

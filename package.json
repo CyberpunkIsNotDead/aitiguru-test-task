@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
     "lint": "eslint . --cache --cache-location .cache/eslint/",
     "lint:fix": "eslint . --cache --cache-location .cache/eslint/ --fix",
     "lint:style": "stylelint \"**/*.{css,scss}\" --cache --cache-location .cache/stylelint/",
     "lint:style:fix": "stylelint \"**/*.{css,scss}\" --cache --cache-location .cache/stylelint/ --fix",
-    "lint:all": "npm run lint && npm run lint:style",
+    "lint:all": "npm run lint && npm run lint:style && npm run type-check",
     "lint:all:fix": "npm run lint:fix && npm run lint:style:fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
