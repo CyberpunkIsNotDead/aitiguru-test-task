@@ -27,7 +27,7 @@ const ProductsTable = ({
 
   const columns: ColumnDef<Product>[] = [
     {
-      accessorKey: 'title',
+      accessorKey: 'checkbox',
       header: () => {
         const allProducts = data?.products ?? [];
         const allSelected =
@@ -43,15 +43,11 @@ const ProductsTable = ({
         };
 
         return (
-          <div className={styles['product-title-header']}>
-            <Checkbox
-              variant='darker'
-              checked={allSelected}
-              onCheckedChange={handleSelectAll}
-            />
-
-            <span>Наименование</span>
-          </div>
+          <Checkbox
+            variant='darker'
+            checked={allSelected}
+            onCheckedChange={handleSelectAll}
+          />
         );
       },
       cell: ({ row }) => {
@@ -59,23 +55,38 @@ const ProductsTable = ({
         const isSelected = selectedRows.has(product.id);
 
         const handleRowSelect = (checked: boolean) => {
-          const newSelectedRows = new Set(selectedRows);
-          if (checked) {
-            newSelectedRows.add(product.id);
-          } else {
-            newSelectedRows.delete(product.id);
-          }
-          setSelectedRows(newSelectedRows);
+          setSelectedRows((prev) => {
+            const newSet = new Set(prev);
+            if (checked) {
+              newSet.add(product.id);
+            } else {
+              newSet.delete(product.id);
+            }
+            return newSet;
+          });
         };
 
         return (
-          <div className={styles['product-title-cell']}>
-            <Checkbox
-              variant='darker'
-              checked={isSelected}
-              onCheckedChange={handleRowSelect}
-            />
+          <Checkbox
+            variant='darker'
+            checked={isSelected}
+            onCheckedChange={handleRowSelect}
+          />
+        );
+      },
+    },
+    {
+      accessorKey: 'title',
+      header: () => (
+        <div className={styles['product-title-header']}>
+          <span>Наименование</span>
+        </div>
+      ),
+      cell: ({ row }) => {
+        const product = row.original;
 
+        return (
+          <div className={styles['product-title-cell']}>
             <div className={styles['product-thumbnail']}>
               <img src={product.thumbnail} />
             </div>
