@@ -26,7 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const inputWrapperClassName = classNames(
       styles['input-wrapper'],
-      variant && styles[`input-wrapper-${variant}`]
+      styles[`input-wrapper-${variant}`]
     );
 
     return (

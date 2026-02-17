@@ -15,7 +15,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const buttonClassName = classNames(
       styles.button,
-      variant && styles[`button-${variant}`],
+      styles[`button-${variant}`],
       className,
       isSquare && styles['button-square']
     );
