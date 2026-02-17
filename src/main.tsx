@@ -7,6 +7,7 @@ import { queryClient } from '@/shared/api/queryClient';
 import './index.scss';
 import { Main } from '@/pages/Main';
 import { Auth } from '@/pages/Auth';
+import AuthGuard from '@/app/AuthGuard';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 createRoot(document.getElementById('root')!).render(
@@ -14,7 +15,14 @@ createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Main />} />
+          <Route
+            path='/'
+            element={
+              <AuthGuard>
+                <Main />
+              </AuthGuard>
+            }
+          />
           <Route path='/auth' element={<Auth />} />
         </Routes>
       </BrowserRouter>

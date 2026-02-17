@@ -109,8 +109,16 @@ const useLogin = () => {
         sessionStorage.setItem('refresh_token', data.refreshToken);
       }
 
-      // Prefetch user data
-      getCurrentUser(data.accessToken);
+      // Set user data in cache immediately
+      queryClient.setQueryData(['currentUser'], {
+        id: data.id,
+        username: data.username,
+        email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        gender: data.gender,
+        image: data.image,
+      });
     },
   });
 };
@@ -151,6 +159,8 @@ const useCurrentUser = () => {
     },
     enabled: !!token, // Only run query if token exists
     retry: false, // Don't retry auth errors
+    staleTime: 5 * 60 * 1000, // Consider data fresh for 5 minutes
+    refetchOnWindowFocus: false, // Don't refetch on window focus
   });
 };
 
