@@ -9,6 +9,39 @@ import PlusIcon from '@/assets/icons/plus.svg?react';
 import DotsThreeCircleIcon from '@/assets/icons/dotsThreeCircle.svg?react';
 import { useState } from 'react';
 
+interface SortableHeaderProps {
+  label: string;
+  field: string;
+  sortBy?: string;
+  order?: 'asc' | 'desc';
+  // eslint-disable-next-line no-unused-vars
+  onSortChange?: (field: string) => void;
+  className?: string;
+}
+
+const SortableHeader = ({
+  label,
+  field,
+  sortBy,
+  order,
+  onSortChange,
+  className,
+}: SortableHeaderProps) => {
+  return (
+    <div className={`${styles['sort-button']} ${className ?? ''}`}>
+      <Button variant='opaque' onClick={() => onSortChange?.(field)}>
+        <span>{label}</span>
+        {sortBy === field &&
+          (order === 'asc' ? (
+            <span className={styles['sort-arrow']}>↑</span>
+          ) : (
+            <span className={styles['sort-arrow']}>↓</span>
+          ))}
+      </Button>
+    </div>
+  );
+};
+
 interface ProductsTableProps {
   data?: Product[];
   isLoading?: boolean;
@@ -82,21 +115,14 @@ const ProductsTable = ({
     {
       accessorKey: 'title',
       header: () => (
-        <div className={styles['product-title-header']}>
-          <Button
-            variant='opaque'
-            onClick={() => onSortChange?.('title')}
-            className={classNames(styles['sort-button'], styles.left)}
-          >
-            <span>Наименование</span>
-            {sortBy === 'title' &&
-              (order === 'asc' ? (
-                <span className={styles['sort-arrow']}>↑</span>
-              ) : (
-                <span className={styles['sort-arrow']}>↓</span>
-              ))}
-          </Button>
-        </div>
+        <SortableHeader
+          label='Наименование'
+          field='title'
+          sortBy={sortBy}
+          order={order}
+          onSortChange={onSortChange}
+          className={styles.left}
+        />
       ),
       cell: ({ row }) => {
         const product = row.original;
@@ -121,19 +147,13 @@ const ProductsTable = ({
     {
       accessorKey: 'brand',
       header: () => (
-        <Button
-          variant='opaque'
-          onClick={() => onSortChange?.('brand')}
-          className={styles['sort-button']}
-        >
-          <span>Вендор</span>
-          {sortBy === 'brand' &&
-            (order === 'asc' ? (
-              <span className={styles['sort-arrow']}>↑</span>
-            ) : (
-              <span className={styles['sort-arrow']}>↓</span>
-            ))}
-        </Button>
+        <SortableHeader
+          label='Вендор'
+          field='brand'
+          sortBy={sortBy}
+          order={order}
+          onSortChange={onSortChange}
+        />
       ),
       cell: ({ row }) => {
         const product = row.original;
@@ -146,37 +166,25 @@ const ProductsTable = ({
     {
       accessorKey: 'sku',
       header: () => (
-        <Button
-          variant='opaque'
-          onClick={() => onSortChange?.('sku')}
-          className={styles['sort-button']}
-        >
-          <span>Артикул</span>
-          {sortBy === 'sku' &&
-            (order === 'asc' ? (
-              <span className={styles['sort-arrow']}>↑</span>
-            ) : (
-              <span className={styles['sort-arrow']}>↓</span>
-            ))}
-        </Button>
+        <SortableHeader
+          label='Артикул'
+          field='sku'
+          sortBy={sortBy}
+          order={order}
+          onSortChange={onSortChange}
+        />
       ),
     },
     {
       accessorKey: 'rating',
       header: () => (
-        <Button
-          variant='opaque'
-          onClick={() => onSortChange?.('rating')}
-          className={styles['sort-button']}
-        >
-          <span>Оценка</span>
-          {sortBy === 'rating' &&
-            (order === 'asc' ? (
-              <span className={styles['sort-arrow']}>↑</span>
-            ) : (
-              <span className={styles['sort-arrow']}>↓</span>
-            ))}
-        </Button>
+        <SortableHeader
+          label='Оценка'
+          field='rating'
+          sortBy={sortBy}
+          order={order}
+          onSortChange={onSortChange}
+        />
       ),
       cell: ({ row: { original: product } }) => {
         const formattedRating = Number(product.rating).toFixed(1);
@@ -196,19 +204,13 @@ const ProductsTable = ({
     {
       accessorKey: 'price',
       header: () => (
-        <Button
-          variant='opaque'
-          onClick={() => onSortChange?.('price')}
-          className={styles['sort-button']}
-        >
-          <span>Цена, ₽</span>
-          {sortBy === 'price' &&
-            (order === 'asc' ? (
-              <span className={styles['sort-arrow']}>↑</span>
-            ) : (
-              <span className={styles['sort-arrow']}>↓</span>
-            ))}
-        </Button>
+        <SortableHeader
+          label='Цена, ₽'
+          field='price'
+          sortBy={sortBy}
+          order={order}
+          onSortChange={onSortChange}
+        />
       ),
       cell: ({ row: { original: product } }) => {
         const [integer, decimals] = product.price.toString().split('.');
