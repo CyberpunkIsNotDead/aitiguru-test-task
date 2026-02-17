@@ -5,16 +5,19 @@ import { PasswordInput } from '@/features/user/ui/PasswordInput';
 import { Button } from '@/shared/ui/Button';
 import { Checkbox } from '@/shared/ui/Checkbox';
 import { Page } from '@/shared/ui/Page';
+import Toast from '@/shared/ui/Toast';
 import styles from './Auth.module.scss';
 import { Line } from '@/shared/ui/Line';
 import { useLoginForm } from '@/features/user/model/useLoginForm';
 import { useLogin } from '@/features/user/api/auth';
+import { useToast } from '@/shared/lib/useToast';
 import type React from 'react';
 
 const Auth = () => {
   const navigate = useNavigate();
   const loginMutation = useLogin();
   const [rememberMe, setRememberMe] = useState(false);
+  const { toast, showToast, hideToast } = useToast();
 
   const loginForm = useLoginForm({
     onSubmit: async (values) => {
@@ -24,8 +27,12 @@ const Auth = () => {
         console.log('Login successful');
         navigate('/');
       } catch (error) {
-        // Handle login error
-        console.error('Login failed:', error);
+        // Handle login error with toast
+        const errorMessage =
+          error instanceof Error
+            ? error.message
+            : 'Ошибка входа. Проверьте логин и пароль.';
+        showToast('Ошибка входа', errorMessage, 'error');
       }
     },
   });
@@ -106,6 +113,14 @@ const Auth = () => {
           </div>
         </div>
       </div>
+
+      <Toast
+        title={toast.title}
+        description={toast.description}
+        open={toast.open}
+        onOpenChange={hideToast}
+        variant={toast.variant}
+      />
     </Page>
   );
 };

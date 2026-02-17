@@ -7,18 +7,26 @@ import RefreshIcon from '@/assets/icons/refresh.svg?react';
 import { useNavigate } from 'react-router-dom';
 import { ItemsHeader } from '@/widgets/ui/ItemsHeader';
 import { useLogout } from '@/features/user/api/auth';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductsTable from '@/features/products/ui/ProductsTable';
 import Pagination from '@/features/products/ui/Pagination';
 import { useProducts } from '@/features/products/api/products';
+import { getSortState, saveSortState } from '@/shared/lib/sessionHelper';
 
 const Main = () => {
   const navigate = useNavigate();
   const logoutMutation = useLogout();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState('title');
-  const [order, setOrder] = useState<'asc' | 'desc'>('asc');
+  const [sortBy, setSortBy] = useState(getSortState().sortBy || 'title');
+  const [order, setOrder] = useState<'asc' | 'desc'>(
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    getSortState().order || 'asc'
+  );
+
+  useEffect(() => {
+    saveSortState(sortBy, order);
+  }, [sortBy, order]);
 
   const limit = 20;
 
@@ -48,15 +56,26 @@ const Main = () => {
   };
 
   const handleSortChange = (field: string) => {
+    let newSortBy = field;
+    let newOrder: 'asc' | 'desc' = 'asc';
+
     if (sortBy === field) {
       // Toggle order if same field
-      setOrder(order === 'asc' ? 'desc' : 'asc');
+      newOrder = order === 'asc' ? 'desc' : 'asc';
     } else {
       // Change field and reset to asc
-      setSortBy(field);
-      setOrder('asc');
+      newOrder = 'asc';
     }
-    setCurrentPage(1); // Reset to first page when sorting
+
+    // Update local state
+    setSortBy(newSortBy);
+    setOrder(newOrder);
+
+    // Save to localStorage
+    saveSortState(newSortBy, newOrder);
+
+    // Reset to first page when sorting
+    setCurrentPage(1);
   };
 
   const skip = Number(productsData?.skip);

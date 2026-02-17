@@ -75,3 +75,39 @@ export const updateAuthTokens = (
   sessionStorage.setItem(TOKEN_KEYS.ACCESS_TOKEN, accessToken);
   sessionStorage.setItem(TOKEN_KEYS.REFRESH_TOKEN, refreshToken);
 };
+
+// Sort state management
+const SORT_KEYS = {
+  SORT_BY: 'products_sort_by',
+  SORT_ORDER: 'products_sort_order',
+} as const;
+
+/**
+ * Save sort state to localStorage
+ */
+export const saveSortState = (sortBy: string, order: 'asc' | 'desc'): void => {
+  localStorage.setItem(SORT_KEYS.SORT_BY, sortBy);
+  localStorage.setItem(SORT_KEYS.SORT_ORDER, order);
+};
+
+/**
+ * Get sort state from localStorage
+ */
+export const getSortState = (): { sortBy: string; order: 'asc' | 'desc' } => {
+  const sortBy = localStorage.getItem(SORT_KEYS.SORT_BY) ?? 'title';
+  const sortOrder = localStorage.getItem(SORT_KEYS.SORT_ORDER);
+
+  // Type guard to ensure sortOrder is valid
+  const order: 'asc' | 'desc' =
+    sortOrder === 'asc' || sortOrder === 'desc' ? sortOrder : 'asc';
+
+  return { sortBy, order };
+};
+
+/**
+ * Clear sort state from localStorage
+ */
+export const clearSortState = (): void => {
+  localStorage.removeItem(SORT_KEYS.SORT_BY);
+  localStorage.removeItem(SORT_KEYS.SORT_ORDER);
+};
