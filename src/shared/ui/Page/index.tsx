@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from '../Card';
+import Loader from '../Loader';
 import styles from './Page.module.scss';
 
 interface PageProps {
   header?: React.ReactNode;
   children: React.ReactNode;
+  isLoading?: boolean;
 }
 
-const Page = ({ header, children }: PageProps) => {
+const Page = ({ header, children, isLoading }: PageProps) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -39,9 +41,13 @@ const Page = ({ header, children }: PageProps) => {
       )}
       <div className={styles.content}>
         <Card fillSpace>
-          <div className={styles['max-width-wrapper']}>
-            <div className={styles['content-wrapper']}>{children}</div>
-          </div>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <div className={styles['max-width-wrapper']}>
+              <div className={styles['content-wrapper']}>{children}</div>
+            </div>
+          )}
         </Card>
       </div>
     </div>

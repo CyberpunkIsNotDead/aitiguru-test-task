@@ -60,7 +60,6 @@
 .button-opaque {
   background: transparent;
   padding: 0;
-  margin: 0;
   width: auto;
   height: auto;
   min-height: auto;
@@ -95,6 +94,36 @@
 
   &:hover {
     background: $white;
+  }
+}
+
+.button-pagination {
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  border: 1px solid $border-light;
+  border-radius: 4px;
+  background-color: $white;
+  filter: drop-shadow(0px 20px 50px rgba(0, 0, 0, 0.12));
+  font-weight: 400;
+  font-size: 14px;
+  color: $text-light-grey;
+
+  &.active {
+    background-color: $element-violet;
+    color: $white;
+  }
+
+  &:hover:not(:disabled) {
+    background: $element-light-grey;
+    border-color: $element-light-grey;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 

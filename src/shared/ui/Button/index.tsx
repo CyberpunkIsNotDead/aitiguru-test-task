@@ -4,8 +4,9 @@ import classNames from 'classnames';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  variant?: 'default' | 'opaque' | 'white';
+  variant?: 'default' | 'opaque' | 'white' | 'pagination';
   isSquare?: true;
+  isActive?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -16,6 +17,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className = '',
       isSquare,
       type = 'button',
+      isActive,
       ...props
     },
     ref
@@ -23,6 +25,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const buttonClassName = classNames(
       styles.button,
       styles[`button-${variant}`],
+      isActive && styles.active,
       className,
       isSquare && styles['button-square']
     );

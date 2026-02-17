@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import CaretLeftIcon from '@/assets/icons/caretLeft.svg?react';
+import CaretRightIcon from '@/assets/icons/caretRight.svg?react';
 import styles from './Pagination.module.scss';
+import { Button } from '@/shared/ui/Button';
 
 interface PaginationProps {
   currentPage: number;
@@ -13,25 +15,6 @@ const Pagination = ({
   totalPages,
   onPageChange,
 }: PaginationProps) => {
-  const [inputPage, setInputPage] = useState(currentPage.toString());
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (value === '' || /^\d+$/.test(value)) {
-      setInputPage(value);
-    }
-  };
-
-  const handleInputSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const page = parseInt(inputPage, 10);
-    if (page >= 1 && page <= totalPages) {
-      onPageChange(page);
-    } else {
-      setInputPage(currentPage.toString());
-    }
-  };
-
   const getVisiblePages = () => {
     const pages = [];
     const maxVisible = 5;
@@ -54,48 +37,36 @@ const Pagination = ({
 
   return (
     <div className={styles['pagination']}>
-      <button
-        className={styles['pagination-button']}
+      <Button
+        variant='opaque'
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
+        className={styles['pagination-caret']}
       >
-        ←
-      </button>
+        <CaretLeftIcon />
+      </Button>
 
       <div className={styles['pagination-pages']}>
         {getVisiblePages().map((page) => (
-          <button
+          <Button
             key={page}
-            className={`${styles['pagination-button']} ${
-              page === currentPage ? styles['active'] : ''
-            }`}
+            variant='pagination'
+            isActive={page === currentPage}
             onClick={() => onPageChange(page)}
           >
             {page}
-          </button>
+          </Button>
         ))}
       </div>
 
-      <button
-        className={styles['pagination-button']}
+      <Button
+        variant='opaque'
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
+        className={styles['pagination-caret']}
       >
-        →
-      </button>
-
-      <form className={styles['pagination-input']} onSubmit={handleInputSubmit}>
-        <input
-          type='text'
-          value={inputPage}
-          onChange={handleInputChange}
-          placeholder='Стр.'
-          className={styles['pagination-input-field']}
-        />
-        <button type='submit' className={styles['pagination-button']}>
-          Перейти
-        </button>
-      </form>
+        <CaretRightIcon />
+      </Button>
     </div>
   );
 };

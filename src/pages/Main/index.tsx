@@ -22,7 +22,12 @@ const Main = () => {
   const limit = 20;
 
   // Get products data to access total items count
-  const { data: productsData } = useProducts(currentPage, limit, sortBy, order);
+  const { data: productsData, isFetching } = useProducts(
+    currentPage,
+    limit,
+    sortBy,
+    order
+  );
 
   const handleLogout = () => {
     logoutMutation
@@ -35,8 +40,14 @@ const Main = () => {
       });
   };
 
+  const skip = Number(productsData?.skip);
+  const total = Number(productsData?.total);
+  const last = skip + limit;
+  const calculatedLast = total < last ? total : last;
+
   return (
     <Page
+      isLoading={isFetching}
       header={
         <ItemsHeader
           text='Товары'
@@ -78,10 +89,18 @@ const Main = () => {
           />
         </div>
 
-        <div className={styles['main-pagination']}>
+        <div className={styles['main-bottom']}>
+          <span className={styles['main-page-counter']}>
+            Показано{' '}
+            <span className={styles.count}>
+              {skip + 1}-{calculatedLast}
+            </span>{' '}
+            из <span className={styles.count}>{total}</span>
+          </span>
+
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil((productsData?.total ?? 0) / limit)}
+            totalPages={Math.ceil(total / limit)}
             onPageChange={setCurrentPage}
           />
         </div>
