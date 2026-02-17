@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCurrentUser } from '@/features/user/api/auth';
 import Loader from '@/shared/ui/Loader';
+import { hasAuthToken, clearAuthTokens } from '@/shared/lib/sessionHelper';
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -11,9 +12,7 @@ const AuthGuard = ({ children }: AuthGuardProps) => {
   const navigate = useNavigate();
 
   // Check if token exists first
-  const hasToken = !!(
-    localStorage.getItem('auth_token') ?? sessionStorage.getItem('auth_token')
-  );
+  const hasToken = hasAuthToken();
 
   // Only fetch current user if token exists
   const { isLoading, error } = useCurrentUser();
@@ -27,11 +26,8 @@ const AuthGuard = ({ children }: AuthGuardProps) => {
 
     // If there's an auth error, clear tokens and redirect
     if (!isLoading && error) {
-      // Clear invalid tokens
-      localStorage.removeItem('auth_token');
-      localStorage.removeItem('refresh_token');
-      sessionStorage.removeItem('auth_token');
-      sessionStorage.removeItem('refresh_token');
+      // Clear invalid tokens using session helper
+      clearAuthTokens();
 
       navigate('/auth', { replace: true });
     }

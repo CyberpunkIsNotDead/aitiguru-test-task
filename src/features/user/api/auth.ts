@@ -1,6 +1,12 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { apiFetch } from '@/shared/api/apiFetch';
 import { queryClient } from '@/shared/api/queryClient';
+import {
+  setAuthTokens,
+  getAccessToken,
+  clearAuthTokens,
+  updateAuthTokens,
+} from '@/shared/lib/sessionHelper';
 
 // Types
 interface User {
@@ -98,16 +104,12 @@ const useLogin = () => {
   return useMutation<AuthUser, Error, LoginCredentials>({
     mutationFn: (credentials: LoginCredentials) => login(credentials),
     onSuccess: (data, variables) => {
-      // Store token based on persist option
-      if (variables.persist) {
-        // Use localStorage for persistent sessions
-        localStorage.setItem('auth_token', data.accessToken);
-        localStorage.setItem('refresh_token', data.refreshToken);
-      } else {
-        // Use sessionStorage for non-persistent sessions
-        sessionStorage.setItem('auth_token', data.accessToken);
-        sessionStorage.setItem('refresh_token', data.refreshToken);
-      }
+      // Store tokens using session helper
+      setAuthTokens(
+        data.accessToken,
+        data.refreshToken,
+        variables.persist ?? false
+      );
 
       // Set user data in cache immediately
       queryClient.setQueryData(['currentUser'], {
@@ -126,28 +128,21 @@ const useLogin = () => {
 const useLogout = () => {
   return useMutation<void, Error, void>({
     mutationFn: async () => {
-      // Try to get token from both storages
-      const token =
-        localStorage.getItem('auth_token') ??
-        sessionStorage.getItem('auth_token');
+      const token = getAccessToken();
       if (!token) {
         throw new Error('No token found');
       }
       await logout(token);
     },
     onSuccess: () => {
-      // Clear tokens from both storages
-      localStorage.removeItem('auth_token');
-      localStorage.removeItem('refresh_token');
-      sessionStorage.removeItem('auth_token');
-      sessionStorage.removeItem('refresh_token');
+      // Clear tokens using session helper
+      clearAuthTokens();
     },
   });
 };
 
 const useCurrentUser = () => {
-  const token =
-    localStorage.getItem('auth_token') ?? sessionStorage.getItem('auth_token');
+  const token = getAccessToken();
 
   return useQuery<User, Error>({
     queryKey: ['currentUser'],
@@ -168,9 +163,8 @@ const useRefreshToken = () => {
   return useMutation<AuthUser, Error, string>({
     mutationFn: (refreshTokenValue: string) => refreshToken(refreshTokenValue),
     onSuccess: (data) => {
-      // Update stored tokens
-      localStorage.setItem('auth_token', data.accessToken);
-      localStorage.setItem('refresh_token', data.refreshToken);
+      // Update stored tokens using session helper
+      updateAuthTokens(data.accessToken, data.refreshToken);
     },
   });
 };
