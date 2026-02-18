@@ -12,7 +12,7 @@
   }
 
   tr {
-    .selected {
+    &.selected {
       border-left: 3px solid $element-blue;
     }
   }
