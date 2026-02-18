@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ import Pagination from '@/shared/ui/Pagination';
 const Main = () => {
   const navigate = useNavigate();
   const logoutMutation = useLogout();
+  const queryClient = useQueryClient();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState(getSortState().sortBy || 'title');
@@ -80,6 +82,11 @@ const Main = () => {
     setCurrentPage(1);
   };
 
+  const handleRefresh = () => {
+    // Invalidate and refetch all products queries
+    queryClient.invalidateQueries({ queryKey: ['products'] });
+  };
+
   const skip = Number(productsData?.skip);
   const total = Number(productsData?.total);
   const last = skip + limit;
@@ -114,7 +121,12 @@ const Main = () => {
           <h1 className={styles['main-top-text']}>Все позиции</h1>
 
           <div className={styles['main-top-buttons']}>
-            <Button variant='white' isSquare>
+            <Button
+              variant='white'
+              isSquare
+              onClick={handleRefresh}
+              disabled={isFetching}
+            >
               <RefreshIcon />
             </Button>
 
