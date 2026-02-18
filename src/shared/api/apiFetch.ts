@@ -104,7 +104,12 @@ const apiFetch = async <T = unknown>(
     if (contentType?.includes('application/json')) {
       return await response.json();
     } else {
-      return (await response.text()) as T;
+      // For non-JSON responses, return text content
+      // This is safe because:
+      // 1. T extends unknown by default
+      // 2. string is assignable to unknown
+      // 3. Call sites should specify proper types for JSON responses
+      return (await response.text()) as unknown as T;
     }
   } catch (error) {
     if (error instanceof ApiError) {
