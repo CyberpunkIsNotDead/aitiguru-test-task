@@ -5,14 +5,19 @@ import styles from './SearchInput.module.scss';
 import SearchIcon from '@/assets/icons/search.svg?react';
 import { Input } from '@/shared/ui/Input';
 
-interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface SearchInputProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'value'
+> {
   placeholder?: string;
+  value?: string | number;
 }
 
-const SearchInput = ({ placeholder, ...props }: SearchInputProps) => {
+const SearchInput = ({ placeholder, value, ...props }: SearchInputProps) => {
   return (
     <Input
       {...props}
+      value={value}
       placeholder={placeholder}
       variant='grey'
       className={styles['search-input']}

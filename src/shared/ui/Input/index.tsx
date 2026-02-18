@@ -4,11 +4,15 @@ import React from 'react';
 
 import styles from './Input.module.scss';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'value'
+> {
   variant?: 'default' | 'grey';
   prepend?: React.ReactNode;
   append?: React.ReactNode;
   label?: string;
+  value?: string | number;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -17,7 +21,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const inputElement = (
-      <input className={styles['input-element']} ref={ref} {...props} />
+      <input
+        className={styles['input-element']}
+        ref={ref}
+        {...props}
+        value={props.value}
+      />
     );
 
     const componentWrapperClassname = classNames(

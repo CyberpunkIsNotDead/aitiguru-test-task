@@ -31,24 +31,33 @@ const Add = () => {
 
   const handleInputChange =
     (field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
       setFormData((prev) => ({
         ...prev,
-        [field]: e.target.value,
+        [field]: value,
       }));
     };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
 
     // Check if at least one field has a value
-    const hasValue = Object.values(formData).some(
-      (value) => value.trim() !== ''
-    );
+    const hasValue = Object.values(formData).some((value) => {
+      if (typeof value === 'string') {
+        return value.trim() !== '';
+      }
+      return value !== 0;
+    });
 
     if (hasValue) {
       // Success - show form data in toast
       const formDataString = Object.entries(formData)
-        .filter(([, value]) => value.trim() !== '')
+        .filter(([, value]) => {
+          if (typeof value === 'string') {
+            return value.trim() !== '';
+          }
+          return value !== 0;
+        })
         .map(([key, value]) => `${key}: ${value}`)
         .join(', ');
 
@@ -96,6 +105,7 @@ const Add = () => {
           />
           <Input
             placeholder='Цена'
+            type='number'
             value={formData.price}
             onChange={handleInputChange('price')}
             className={styles['form-field']}
@@ -119,7 +129,9 @@ const Add = () => {
         title={toast.title}
         description={toast.description}
         open={toast.open}
-        onOpenChange={() => {}}
+        onOpenChange={() => {
+          /* empty */
+        }}
         variant={toast.variant}
       />
     </Page>
