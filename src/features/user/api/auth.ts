@@ -49,8 +49,7 @@ interface RefreshResponse extends AuthUser {}
 
 // API Functions
 const login = async (credentials: LoginCredentials): Promise<LoginResponse> => {
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-  const { persist: _, ...loginData } = credentials;
+  const { ...loginData } = credentials;
 
   const response = await apiFetch<LoginResponse>('/auth/login', {
     method: 'POST',
