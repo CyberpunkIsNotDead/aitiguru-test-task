@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:analyze": "tsc -b && vite build --mode analyze",
     "type-check": "tsc --noEmit",
     "lint": "eslint . --cache --cache-location .cache/eslint/",
     "lint:fix": "eslint . --cache --cache-location .cache/eslint/ --fix",
@@ -49,6 +50,7 @@
     "eslint-plugin-react-refresh": "^0.4.26",
     "globals": "^16.5.0",
     "prettier": "^3.8.1",
+    "rollup-plugin-visualizer": "^6.0.5",
     "sass": "^1.97.3",
     "stylelint": "^17.2.0",
     "stylelint-config-recommended-vue": "^1.6.1",
