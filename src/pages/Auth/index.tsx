@@ -26,8 +26,6 @@ const Auth = () => {
     onSubmit: async (values) => {
       try {
         await loginMutation.mutateAsync({ ...values, persist: rememberMe });
-        // Handle successful login (e.g., redirect)
-        console.log('Login successful');
         navigate('/');
       } catch (error) {
         // Handle login error with toast

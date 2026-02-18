@@ -11,6 +11,7 @@ import ProductsTable from '@/features/products/ui/ProductsTable';
 import { SearchInput } from '@/features/search/ui/SearchInput';
 import { useLogout } from '@/features/user/api/auth';
 import { getSortState, saveSortState } from '@/shared/lib/sessionHelper';
+import { useToast } from '@/shared/lib/useToast';
 import { Button } from '@/shared/ui/Button';
 import { ItemsHeader } from '@/shared/ui/ItemsHeader';
 import { Page } from '@/shared/ui/Page';
@@ -20,6 +21,7 @@ const Main = () => {
   const navigate = useNavigate();
   const logoutMutation = useLogout();
   const queryClient = useQueryClient();
+  const { showToast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState(getSortState().sortBy || 'title');
@@ -49,8 +51,8 @@ const Main = () => {
       .then(() => {
         navigate('/auth');
       })
-      .catch((error) => {
-        console.error('Logout failed:', error);
+      .catch(() => {
+        showToast('Ошибка выхода', 'Не удалось выйти из системы', 'error');
       });
   };
 
@@ -87,8 +89,8 @@ const Main = () => {
     queryClient.invalidateQueries({ queryKey: ['products'] });
   };
 
-  const skip = Number(productsData?.skip);
-  const total = Number(productsData?.total);
+  const skip = Number(productsData?.skip ?? 0);
+  const total = Number(productsData?.total ?? 0);
   const last = skip + limit;
   const calculatedLast = total < last ? total : last;
 

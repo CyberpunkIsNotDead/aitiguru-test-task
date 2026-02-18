@@ -14,7 +14,7 @@ interface FormData {
   title: string;
   brand: string;
   sku: string;
-  price: string;
+  price: string | number;
 }
 
 const Add = () => {
@@ -46,7 +46,10 @@ const Add = () => {
       if (typeof value === 'string') {
         return value.trim() !== '';
       }
-      return value !== 0;
+      if (typeof value === 'number') {
+        return !isNaN(value) && value > 0;
+      }
+      return false;
     });
 
     if (hasValue) {
@@ -56,7 +59,10 @@ const Add = () => {
           if (typeof value === 'string') {
             return value.trim() !== '';
           }
-          return value !== 0;
+          if (typeof value === 'number') {
+            return !isNaN(value) && value > 0;
+          }
+          return false;
         })
         .map(([key, value]) => `${key}: ${value}`)
         .join(', ');
