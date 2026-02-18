@@ -1,17 +1,20 @@
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import styles from './Auth.module.scss';
+
+import type React from 'react';
+
+import { useLogin } from '@/features/user/api/auth';
+import { useLoginForm } from '@/features/user/model/useLoginForm';
 import { LoginInput } from '@/features/user/ui/LoginInput';
 import { PasswordInput } from '@/features/user/ui/PasswordInput';
+import { useToast } from '@/shared/lib/useToast';
 import { Button } from '@/shared/ui/Button';
 import { Checkbox } from '@/shared/ui/Checkbox';
+import { Line } from '@/shared/ui/Line';
 import { Page } from '@/shared/ui/Page';
 import Toast from '@/shared/ui/Toast';
-import styles from './Auth.module.scss';
-import { Line } from '@/shared/ui/Line';
-import { useLoginForm } from '@/features/user/model/useLoginForm';
-import { useLogin } from '@/features/user/api/auth';
-import { useToast } from '@/shared/lib/useToast';
-import type React from 'react';
 
 const Auth = () => {
   const navigate = useNavigate();

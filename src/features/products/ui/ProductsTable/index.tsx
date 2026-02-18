@@ -1,13 +1,15 @@
 import { type ColumnDef, type Row } from '@tanstack/react-table';
-import { type Product } from '@/features/products/api/products';
+import classNames from 'classnames';
+import { useState } from 'react';
+
 import styles from './ProductsTable.module.scss';
+
+import DotsThreeCircleIcon from '@/assets/icons/dotsThreeCircle.svg?react';
+import PlusIcon from '@/assets/icons/plus.svg?react';
+import { type Product } from '@/features/products/api/products';
+import { Button } from '@/shared/ui/Button';
 import { Checkbox } from '@/shared/ui/Checkbox';
 import Table from '@/shared/ui/Table';
-import classNames from 'classnames';
-import { Button } from '@/shared/ui/Button';
-import PlusIcon from '@/assets/icons/plus.svg?react';
-import DotsThreeCircleIcon from '@/assets/icons/dotsThreeCircle.svg?react';
-import { useState } from 'react';
 
 interface SortableHeaderProps {
   label: string;

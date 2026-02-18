@@ -1,7 +1,9 @@
 import React from 'react';
-import { Input } from '@/shared/ui/Input';
-import SearchIcon from '@/assets/icons/search.svg?react';
+
 import styles from './SearchInput.module.scss';
+
+import SearchIcon from '@/assets/icons/search.svg?react';
+import { Input } from '@/shared/ui/Input';
 
 interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;

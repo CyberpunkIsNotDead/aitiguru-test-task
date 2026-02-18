@@ -6,6 +6,7 @@ import {
   type RowData,
   type Row,
 } from '@tanstack/react-table';
+
 import styles from './Table.module.scss';
 
 interface TableProps<TData extends RowData> {

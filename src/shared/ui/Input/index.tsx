@@ -1,7 +1,8 @@
-import React from 'react';
 import { Slot } from '@radix-ui/react-slot';
-import styles from './Input.module.scss';
 import classNames from 'classnames';
+import React from 'react';
+
+import styles from './Input.module.scss';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   variant?: 'default' | 'grey';

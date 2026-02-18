@@ -1,4 +1,5 @@
 import * as Toast from '@radix-ui/react-toast';
+
 import styles from './Toast.module.scss';
 
 interface ToastProps {

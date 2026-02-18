@@ -1,6 +1,8 @@
-import { Header } from '@/shared/ui/Header';
 import styles from './ItemsHeader.module.scss';
+
 import type React from 'react';
+
+import { Header } from '@/shared/ui/Header';
 
 interface ItemsHeaderProps {
   children?: React.ReactNode;

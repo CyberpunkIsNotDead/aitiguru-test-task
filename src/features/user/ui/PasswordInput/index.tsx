@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { Input } from '@/shared/ui/Input';
-import { Button } from '@/shared/ui/Button';
-import LockIcon from '@/assets/icons/lock.svg?react';
-import EyeOffIcon from '@/assets/icons/eyeOff.svg?react';
-import CloseIcon from '@/assets/icons/close.svg?react';
+
 import styles from './PasswordInput.module.scss';
+
+import CloseIcon from '@/assets/icons/close.svg?react';
+import EyeOffIcon from '@/assets/icons/eyeOff.svg?react';
+import LockIcon from '@/assets/icons/lock.svg?react';
+import { Button } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input';
 
 interface PasswordInputProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,

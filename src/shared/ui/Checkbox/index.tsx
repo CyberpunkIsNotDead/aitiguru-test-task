@@ -1,6 +1,7 @@
-import React, { forwardRef } from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import * as LabelPrimitive from '@radix-ui/react-label';
+import React, { forwardRef } from 'react';
+
 import styles from './Checkbox.module.scss';
 
 interface CheckboxProps extends React.ComponentPropsWithoutRef<

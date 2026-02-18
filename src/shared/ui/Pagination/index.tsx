@@ -1,6 +1,7 @@
+import styles from './Pagination.module.scss';
+
 import CaretLeftIcon from '@/assets/icons/caretLeft.svg?react';
 import CaretRightIcon from '@/assets/icons/caretRight.svg?react';
-import styles from './Pagination.module.scss';
 import { Button } from '@/shared/ui/Button';
 
 interface PaginationProps {

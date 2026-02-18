@@ -6,6 +6,7 @@ import react from 'eslint-plugin-react';
 import tseslint from 'typescript-eslint';
 import prettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
+import importPlugin from 'eslint-plugin-import';
 
 export default [
   { ignores: ['dist', 'node_modules', '*.config.js', '*.config.ts'] },
@@ -17,6 +18,7 @@ export default [
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       prettier,
+      import: importPlugin,
     },
     languageOptions: {
       ecmaVersion: 2024,
@@ -87,6 +89,27 @@ export default [
       '@typescript-eslint/no-misused-promises': 'error',
       '@typescript-eslint/return-await': 'error',
       '@typescript-eslint/require-await': 'error',
+
+      // Import order rules
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin', // Node.js built-in modules
+            'external', // External packages (npm)
+            'internal', // Internal packages (@/ aliases)
+            'parent', // Parent directories (../)
+            'sibling', // Sibling directories (./)
+            'index', // Same directory (./index)
+            'type', // TypeScript type imports
+          ],
+          'newlines-between': 'always',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+        },
+      ],
     },
   },
   {

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+
 import { Card } from '../Card';
 import Loader from '../Loader';
+
 import styles from './Page.module.scss';
 
 interface PageProps {

@@ -1,4 +1,5 @@
 import { QueryClient } from '@tanstack/react-query';
+
 import { isClientError } from './errorUtils';
 
 // Create a new QueryClient instance

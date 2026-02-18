@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { useCurrentUser } from '@/features/user/api/auth';
-import Loader from '@/shared/ui/Loader';
 import { hasAuthToken, clearAuthTokens } from '@/shared/lib/sessionHelper';
+import Loader from '@/shared/ui/Loader';
 
 interface AuthGuardProps {
   children: React.ReactNode;

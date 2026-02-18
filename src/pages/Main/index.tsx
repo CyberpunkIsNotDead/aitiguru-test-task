@@ -1,17 +1,19 @@
-import { Button } from '@/shared/ui/Button';
-import { Page } from '@/shared/ui/Page';
-import { SearchInput } from '@/features/search/ui/SearchInput';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import styles from './Main.module.scss';
+
 import PlusCircleIcon from '@/assets/icons/plusCircle.svg?react';
 import RefreshIcon from '@/assets/icons/refresh.svg?react';
-import { useNavigate } from 'react-router-dom';
-import { ItemsHeader } from '@/shared/ui/ItemsHeader';
-import { useLogout } from '@/features/user/api/auth';
-import { useState, useEffect } from 'react';
-import ProductsTable from '@/features/products/ui/ProductsTable';
-import Pagination from '@/shared/ui/Pagination';
 import { useProducts } from '@/features/products/api/products';
+import ProductsTable from '@/features/products/ui/ProductsTable';
+import { SearchInput } from '@/features/search/ui/SearchInput';
+import { useLogout } from '@/features/user/api/auth';
 import { getSortState, saveSortState } from '@/shared/lib/sessionHelper';
+import { Button } from '@/shared/ui/Button';
+import { ItemsHeader } from '@/shared/ui/ItemsHeader';
+import { Page } from '@/shared/ui/Page';
+import Pagination from '@/shared/ui/Pagination';
 
 const Main = () => {
   const navigate = useNavigate();
