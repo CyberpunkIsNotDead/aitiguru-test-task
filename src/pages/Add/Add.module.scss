@@ -1,0 +1,38 @@
+@use '@/shared/css/colors' as *;
+
+.add-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 49.6px;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: $text-dark;
+  }
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-fields {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  .form-field {
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}

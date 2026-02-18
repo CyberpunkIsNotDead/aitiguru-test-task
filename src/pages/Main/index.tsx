@@ -92,7 +92,11 @@ const Main = () => {
         <ItemsHeader
           text='Товары'
           controls={
-            <Button onClick={handleLogout} disabled={logoutMutation.isPending}>
+            <Button
+              variant='opaque'
+              onClick={handleLogout}
+              disabled={logoutMutation.isPending}
+            >
               Выйти
             </Button>
           }
@@ -114,7 +118,11 @@ const Main = () => {
               <RefreshIcon />
             </Button>
 
-            <Button>
+            <Button
+              onClick={() => {
+                navigate('/add');
+              }}
+            >
               <>
                 <PlusCircleIcon />
 

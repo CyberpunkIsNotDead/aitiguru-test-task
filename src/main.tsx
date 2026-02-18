@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 
 import AuthGuard from '@/app/AuthGuard';
+import Add from '@/pages/Add';
 import { Auth } from '@/pages/Auth';
 import { Main } from '@/pages/Main';
 import { queryClient } from '@/shared/api/queryClient';
@@ -22,6 +23,14 @@ createRoot(document.getElementById('root')!).render(
             element={
               <AuthGuard>
                 <Main />
+              </AuthGuard>
+            }
+          />
+          <Route
+            path='/add'
+            element={
+              <AuthGuard>
+                <Add />
               </AuthGuard>
             }
           />
